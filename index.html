@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     
-    <!-- External Libraries: Excel, PDF, QR Generation, QR Scanner -->
+    <!-- External Libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
@@ -43,22 +43,18 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
         body { background-color: var(--bg-base); color: var(--text-primary); height: 100dvh; width: 100vw; overflow: hidden; display: flex; justify-content: center; }
 
-        /* APP WRAPPER */
         #app-wrapper { width: 100%; max-width: 480px; height: 100%; background-color: var(--bg-base); position: relative; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 0 50px rgba(0,0,0,0.8); }
         @media (min-width: 768px) { #app-wrapper { max-width: 100%; } }
 
-        /* SCREENS */
         .screen { display: none; flex-direction: column; height: 100%; width: 100%; position: absolute; top: 0; left: 0; background: var(--bg-base); z-index: 10; animation: fadeIn 0.3s ease; }
         .screen.active { display: flex; }
         .content-area { flex: 1; overflow-y: auto; padding: 20px; padding-bottom: 100px; scroll-behavior: smooth; }
         .content-area::-webkit-scrollbar { display: none; }
 
-        /* GLASS HEADER */
         .header { background: var(--bg-glass); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); padding: 20px; border-bottom: 1px solid var(--border-color); position: sticky; top: 0; z-index: 30; display: flex; justify-content: space-between; align-items: center; }
         .header-title { font-weight: 700; font-size: 18px; letter-spacing: -0.5px; }
         .header-subtitle { font-size: 12px; color: var(--text-secondary); margin-top: 2px; }
 
-        /* NOTIFICATION STYLES */
         .notification-container { position: relative; }
         .bell { font-size: 24px; cursor: pointer; position: relative; color: var(--text-primary); transition: transform 0.2s; }
         .bell:active { transform: scale(0.9); }
@@ -71,14 +67,12 @@
         .notif-dropdown li.unread { background: rgba(0, 149, 246, 0.1); border-left: 3px solid var(--accent-color); }
         .notif-dropdown li small { color: var(--text-secondary); font-size: 10px; margin-top: 4px; display: block; }
 
-        /* TYPOGRAPHY */
         .brand-gradient { background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         h1 { font-size: 28px; font-weight: 800; letter-spacing: -1px; margin-bottom: 10px; text-align: center; }
         h2 { font-size: 20px; font-weight: 700; margin-bottom: 15px; }
         h3 { font-size: 16px; font-weight: 600; margin-bottom: 10px; color: var(--accent-color); }
         h4 { font-size: 14px; font-weight: 600; margin-bottom: 8px; }
 
-        /* CARDS */
         .card { background: var(--bg-elevated); border: 1px solid var(--border-color); border-radius: 20px; padding: 20px; margin-bottom: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); transition: transform 0.2s; }
         .card:active { transform: scale(0.99); }
         .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; }
@@ -91,33 +85,25 @@
         .info-group { margin-bottom: 12px; }
         .info-label { font-size: 12px; color: var(--text-secondary); margin-bottom: 2px; text-transform: uppercase; letter-spacing: 0.5px; }
         .info-value { font-size: 15px; font-weight: 500; color: var(--text-primary); word-break: break-word; }
-        
         .detail-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 14px; }
         .detail-label { color: var(--text-secondary); }
 
-        .section-box { background: var(--bg-surface); padding: 15px; border-radius: 12px; margin-bottom: 15px; border: 1px solid var(--border-light); }
-
-        /* FORMS & INPUTS */
         .form-group { margin-bottom: 16px; position: relative; }
         label { display: block; font-size: 13px; color: var(--text-secondary); margin-bottom: 8px; font-weight: 500; }
         input, select, textarea { width: 100%; background: var(--bg-surface); border: 1px solid var(--border-light); color: var(--text-primary); padding: 16px; border-radius: 16px; font-size: 15px; outline: none; transition: border-color 0.2s, background 0.2s; appearance: none; }
-        
         input[type="date"] { color: var(--text-primary); cursor: pointer; }
         input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(1); cursor: pointer; }
-        
         input:focus, select:focus, textarea:focus { border-color: var(--accent-color); background: var(--bg-elevated); }
         input:read-only, textarea:read-only { opacity: 0.7; cursor: not-allowed; background: var(--bg-base); border-color: transparent; }
+        
         .password-wrapper { position: relative; }
         .toggle-password { position: absolute; right: 16px; top: 50%; transform: translateY(-50%); font-size: 20px; color: var(--text-secondary); cursor: pointer; }
-        
         .checkbox-wrapper { display: flex; align-items: center; gap: 10px; margin-top: 10px; }
-        .checkbox-wrapper input { width: 18px; height: 18px; margin: 0; padding: 0; accent-color: var(--accent-color); appearance: auto; -webkit-appearance: auto; cursor: pointer; }
-        .checkbox-wrapper label { margin: 0; font-size: 14px; color: var(--text-secondary); cursor: pointer; }
+        .checkbox-wrapper input { width: 18px; height: 18px; margin: 0; padding: 0; accent-color: var(--accent-color); cursor: pointer; }
 
-        /* BUTTONS */
         button { width: 100%; border: none; padding: 16px; border-radius: 16px; font-size: 16px; font-weight: 600; cursor: pointer; transition: transform 0.2s, opacity 0.2s; color: #fff; display: flex; justify-content: center; align-items: center; gap: 8px; }
         button:active { transform: scale(0.96); }
-        button:disabled { opacity: 0.7; cursor: not-allowed; transform: none; }
+        button:disabled { opacity: 0.7; cursor: not-allowed; }
         .btn-primary { background: var(--accent-color); }
         .btn-gradient { background: var(--gradient-primary); box-shadow: 0 8px 20px rgba(0, 149, 246, 0.3); }
         .btn-success { background: var(--success); }
@@ -126,12 +112,6 @@
         .btn-group { display: flex; gap: 10px; margin-top: 15px; }
         .btn-small { padding: 8px 12px; font-size: 13px; border-radius: 10px; width: auto; }
 
-        /* DRAG AND DROP */
-        .dropzone { border: 2px dashed var(--border-light); border-radius: 20px; padding: 40px 20px; text-align: center; color: var(--text-secondary); background: var(--bg-surface); cursor: pointer; transition: 0.2s; }
-        .dropzone.dragover { border-color: var(--accent-color); background: rgba(0, 149, 246, 0.1); }
-        .dropzone i { font-size: 40px; margin-bottom: 10px; color: var(--text-primary); }
-
-        /* BOTTOM NAV */
         .bottom-nav { background: var(--bg-glass); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-top: 1px solid var(--border-color); display: flex; justify-content: space-around; padding: 15px 0 calc(15px + env(safe-area-inset-bottom)); position: absolute; bottom: 0; width: 100%; z-index: 30; }
         .nav-item { display: flex; flex-direction: column; align-items: center; color: var(--text-secondary); cursor: pointer; transition: color 0.2s; width: 100%; }
         .nav-item.active { color: var(--text-primary); }
@@ -139,25 +119,21 @@
         .nav-item.active i { transform: scale(1.15); font-weight: bold; }
         .nav-item span { font-size: 11px; margin-top: 4px; font-weight: 500; }
 
-        /* TOAST NOTIFICATION */
         .toast { position: fixed; top: 20px; left: 50%; transform: translateX(-50%) translateY(-100px); background: var(--bg-elevated); color: var(--text-primary); padding: 14px 24px; border-radius: 30px; font-size: 14px; font-weight: 500; border: 1px solid var(--border-light); box-shadow: 0 10px 30px rgba(0,0,0,0.5); z-index: 9999; transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); display: flex; align-items: center; gap: 10px; }
         .toast.show { transform: translateX(-50%) translateY(0); }
         
-        /* GRID LAYOUT FOR ADMIN */
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
         .action-card { background: var(--bg-surface); border: 1px solid var(--border-light); border-radius: 20px; padding: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; cursor: pointer; text-align: center; transition: background 0.2s;}
         .action-card:hover { background: var(--bg-elevated); }
         .action-card i { font-size: 32px; color: var(--accent-color); }
         .action-card span { font-size: 13px; font-weight: 600; }
 
-        /* MODAL */
         .modal { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 100; display: none; justify-content: center; align-items: flex-end; backdrop-filter: blur(5px); }
         .modal.active { display: flex; }
         .modal-content { background: var(--bg-surface); width: 100%; border-radius: 24px 24px 0 0; padding: 30px 20px 50px; animation: slideUp 0.3s cubic-bezier(0.1, 0.8, 0.2, 1); max-height: 85vh; overflow-y: auto; }
         @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        /* TABLES FOR ADMIN */
         .table-container { width: 100%; overflow-x: auto; background: var(--bg-elevated); border-radius: 12px; border: 1px solid var(--border-color); margin-top: 15px; }
         table { width: 100%; border-collapse: collapse; min-width: 800px; }
         th, td { padding: 12px 15px; text-align: left; border-bottom: 1px solid var(--border-color); font-size: 13px; }
@@ -165,43 +141,15 @@
         tr:hover { background: rgba(255,255,255,0.02); }
         td { color: var(--text-primary); }
 
-        /* QR CODE STYLING */
         .qr-wrapper { background: #fff; padding: 15px; border-radius: 12px; display: inline-block; margin-top: 10px; }
         .img-preview { width: 100%; max-height: 200px; object-fit: contain; border-radius: 12px; margin-top: 10px; border: 1px solid var(--border-light); display: none; }
         #reader { border-radius: 16px; overflow: hidden; border: 2px solid var(--accent-color); }
         #reader video { object-fit: cover; }
-
-        /* BATRISI UPDATE CARDS */
-        .update-card { background: var(--bg-elevated); border: 1px solid var(--border-color); border-radius: 20px; padding: 20px; margin-bottom: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
-        .update-img { width: 100%; max-height: 200px; object-fit: cover; border-radius: 12px; margin-bottom: 15px; background: var(--bg-surface); }
-        .update-meta { font-size: 12px; color: var(--accent-color); margin-bottom: 8px; font-weight: 600; display: flex; gap: 10px; align-items: center;}
-        .update-msg { font-size: 15px; color: var(--text-primary); line-height: 1.5; white-space: pre-wrap; word-wrap: break-word;}
-        
-        .video-responsive-container {
-            position: relative;
-            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
-            height: 0;
-            overflow: hidden;
-            width: 100%;
-            border-radius: 12px;
-            margin-bottom: 15px;
-            background: #000;
-        }
-        .video-responsive-container iframe,
-        .video-responsive-container video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
     </style>
 </head>
 <body>
 
 <div id="app-wrapper">
-
     <!-- TOAST -->
     <div id="toast" class="toast"><i id="toast-icon" class="ph-fill ph-check-circle" style="color: var(--success); font-size: 20px;"></i> <span id="toast-msg">Success</span></div>
 
@@ -215,7 +163,6 @@
 
             <div class="card" style="padding: 20px;">
                 <form id="login-form">
-                    <!-- Note: Role drop-down is removed. Supabase handles auto-detection. -->
                     <div class="form-group" id="login-id-group">
                         <label id="login-id-label">Login ID / Member Number</label>
                         <input type="text" id="login-id" placeholder="Enter ID" required autocomplete="off">
@@ -236,15 +183,11 @@
             </div>
         </div>
 
-        <!-- SOCIETY DETAILS FOOTER -->
         <div style="text-align: center; padding: 30px 20px 20px; font-size: 11px; color: var(--text-secondary); line-height: 1.6;">
             <b style="color: var(--text-primary); font-size: 12px;">Shree Batrishi Jain Co-Op Education Society Limited</b><br>
             Sheth Shri Hiralal Hargovandas Batrishi Hall<br>
             Near R.T.O Circle, Subhashbridge, Collector Kacheri<br>
-            Ahmedabad - 380027<br><br>
-            Phone: 079-27557668<br>
-            Mobile: +91 95864 23232<br>
-            Email: <a href="mailto:32cedusociety@gmail.com" style="color: var(--accent-color); text-decoration: none;">32cedusociety@gmail.com</a>
+            Ahmedabad - 380027
         </div>
     </div>
 
@@ -256,9 +199,8 @@
                 <div class="header-subtitle">Welcome, <span id="admin-name-display">Admin</span></div>
             </div>
             <div style="display: flex; align-items: center; gap: 15px;">
-                <!-- Notification Bell -->
                 <div class="notification-container">
-                    <div class="bell" onclick="toggleNotifications()">
+                    <div class="bell" onclick="toggleNotifications('admin')">
                         <i class="ph ph-bell"></i>
                         <span id="notifCount-admin" class="notif-count">0</span>
                     </div>
@@ -272,17 +214,15 @@
         </div>
         <div class="content-area">
             <div class="grid-2">
-                <div class="action-card" onclick="openBatrisiProgramsAdmin()">
+                <div class="action-card" onclick="openModal('modal-batrisi-programs')">
                     <i class="ph ph-calendar-star"></i><span>Programs</span>
                 </div>
-                <!-- Other Action Cards hidden or removed to simplify based on user prompt requirements -->
             </div>
             
             <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 25px; margin-bottom: 10px;">
                 <h2 style="margin: 0;">Request Overview</h2>
             </div>
             
-            <!-- Table Container for Admin -->
             <div class="table-container">
                 <table id="admin-request-table">
                     <thead>
@@ -301,32 +241,9 @@
             </div>
             <p id="admin-empty-msg" style="text-align: center; color: var(--text-secondary); margin-top: 20px; display: none;">No requests found.</p>
         </div>
-        <!-- Admin Bottom Nav -->
         <div class="bottom-nav">
             <div class="nav-item active" onclick="switchScreen('screen-admin'); renderAdminRequests();"><i class="ph-fill ph-squares-four"></i><span>Panel</span></div>
             <div class="nav-item" onclick="logout()"><i class="ph ph-sign-out"></i><span>Logout</span></div>
-        </div>
-    </div>
-
-    <!-- Modals for Admin -->
-    <!-- Batrisi Programs Admin Modal -->
-    <div id="modal-batrisi-programs" class="modal">
-        <div class="modal-content">
-            <h2 style="text-align: center;">Manage Programs</h2>
-            <div id="admin-program-list" style="margin-bottom: 20px; max-height: 200px; overflow-y: auto;"></div>
-            <h3 style="border-top: 1px solid var(--border-color); padding-top: 15px;">Add New Program</h3>
-            <form id="form-add-program">
-                <div class="form-group">
-                    <label>Program Title *</label>
-                    <input type="text" id="prog-title" placeholder="e.g. Annual Medical Camp" required>
-                </div>
-                <div class="form-group">
-                    <label>Message / Description *</label>
-                    <textarea id="prog-msg" rows="3" placeholder="Enter program details..." required></textarea>
-                </div>
-                <button type="submit" class="btn-success" style="margin-top: 15px;">Post Update</button>
-            </form>
-            <button class="btn-outline" style="margin-top: 10px;" onclick="closeModal('modal-batrisi-programs')">Close</button>
         </div>
     </div>
 
@@ -337,9 +254,8 @@
                 <div class="header-title">Member Hub</div>
                 <div class="header-subtitle" id="member-header-name">Welcome</div>
             </div>
-            <!-- Notification Bell -->
             <div class="notification-container">
-                <div class="bell" onclick="toggleNotifications()">
+                <div class="bell" onclick="toggleNotifications('member')">
                     <i class="ph ph-bell"></i>
                     <span id="notifCount-member" class="notif-count">0</span>
                 </div>
@@ -352,7 +268,6 @@
         <div class="content-area" id="member-content-area">
             <!-- Dynamic Content -->
         </div>
-        <!-- Member Bottom Nav -->
         <div class="bottom-nav">
             <div class="nav-item active" id="nav-member-apply" onclick="renderMemberApply()"><i class="ph-fill ph-plus-circle"></i><span>Apply</span></div>
             <div class="nav-item" id="nav-member-status" onclick="renderMemberStatus()"><i class="ph ph-clock-counter-clockwise"></i><span>Status</span></div>
@@ -368,9 +283,8 @@
                 <div class="header-title">Committee Panel</div>
                 <div class="header-subtitle" id="committee-header-name">Welcome</div>
             </div>
-            <!-- Notification Bell -->
             <div class="notification-container">
-                <div class="bell" onclick="toggleNotifications()">
+                <div class="bell" onclick="toggleNotifications('committee')">
                     <i class="ph ph-bell"></i>
                     <span id="notifCount-committee" class="notif-count">0</span>
                 </div>
@@ -383,35 +297,9 @@
         <div class="content-area" id="committee-request-list">
             <!-- Dynamic Content -->
         </div>
-        <!-- Committee Bottom Nav -->
         <div class="bottom-nav">
             <div class="nav-item active" id="nav-committee-inbox" onclick="renderCommitteeRequests()"><i class="ph-fill ph-tray"></i><span>Inbox</span></div>
-            <div class="nav-item" id="nav-committee-programs" onclick="renderCommitteePrograms()"><i class="ph ph-calendar-star"></i><span>Programs</span></div>
             <div class="nav-item" onclick="logout()"><i class="ph ph-sign-out"></i><span>Logout</span></div>
-        </div>
-    </div>
-
-    <!-- Modal: Decline Reason -->
-    <div id="modal-decline" class="modal">
-        <div class="modal-content">
-            <h2>Decline Request</h2>
-            <div class="form-group">
-                <label>Reason for rejection</label>
-                <textarea id="decline-reason" rows="3" placeholder="Enter reason..."></textarea>
-            </div>
-            <input type="hidden" id="decline-request-id">
-            <div class="btn-group">
-                <button class="btn-outline" onclick="closeModal('modal-decline')">Cancel</button>
-                <button class="btn-danger" onclick="confirmDecline()">Confirm Decline</button>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Modal: View ID/Prescription Photo -->
-    <div id="modal-view-photo" class="modal">
-        <div class="modal-content" style="background: transparent; align-items: center; padding-bottom: 20px;">
-            <img id="full-id-photo" src="" style="max-width: 100%; max-height: 70vh; border-radius: 12px; object-fit: contain;">
-            <button class="btn-outline" style="margin-top: 20px; background: rgba(0,0,0,0.5); color: white; border: none;" onclick="closeModal('modal-view-photo')"><i class="ph ph-x"></i> Close</button>
         </div>
     </div>
 
@@ -422,9 +310,8 @@
                 <div class="header-title">Lab Portal</div>
                 <div class="header-subtitle" id="lab-header-name">Welcome</div>
             </div>
-            <!-- Notification Bell -->
             <div class="notification-container">
-                <div class="bell" onclick="toggleNotifications()">
+                <div class="bell" onclick="toggleNotifications('lab')">
                     <i class="ph ph-bell"></i>
                     <span id="notifCount-lab" class="notif-count">0</span>
                 </div>
@@ -453,8 +340,8 @@
                     <h2>Complete Process</h2>
                     
                     <div class="form-group">
-                        <label>Upload Invoice Link / Photo</label>
-                        <input type="file" id="lab-invoice-file" accept="image/png, image/jpeg, image/jpg" capture="environment" onchange="handleInvoiceUpload(event)" style="background: transparent; padding: 0; border: none;">
+                        <label>Upload Invoice Photo</label>
+                        <input type="file" id="lab-invoice-file" accept="image/*" capture="environment" onchange="handleInvoiceUpload(event)" style="background: transparent; padding: 0; border: none;">
                         <img id="invoice-preview" class="img-preview" src="">
                     </div>
                     
@@ -462,7 +349,6 @@
                 </div>
             </div>
 
-            <!-- Lab Specific Request Overview -->
             <div id="lab-overview-section" style="margin-top: 15px; border-top: 1px solid var(--border-color); padding-top: 20px;">
                 <h2>My Processed Requests</h2>
                 <div class="table-container">
@@ -475,16 +361,38 @@
                             </tr>
                         </thead>
                         <tbody id="lab-request-list-body">
-                            <!-- Dynamic Lab Request Overview Content -->
+                            <!-- Dynamic Content -->
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
-        <!-- Lab Bottom Nav -->
         <div class="bottom-nav">
             <div class="nav-item active" onclick="resetLabSearch()"><i class="ph-fill ph-magnifying-glass"></i><span>Search</span></div>
             <div class="nav-item" onclick="logout()"><i class="ph ph-sign-out"></i><span>Logout</span></div>
+        </div>
+    </div>
+
+    <!-- MODALS -->
+    <div id="modal-decline" class="modal">
+        <div class="modal-content">
+            <h2>Decline Request</h2>
+            <div class="form-group">
+                <label>Reason for rejection</label>
+                <textarea id="decline-reason" rows="3" placeholder="Enter reason..."></textarea>
+            </div>
+            <input type="hidden" id="decline-request-id">
+            <div class="btn-group">
+                <button class="btn-outline" onclick="closeModal('modal-decline')">Cancel</button>
+                <button class="btn-danger" onclick="confirmDecline()">Confirm Decline</button>
+            </div>
+        </div>
+    </div>
+    
+    <div id="modal-view-photo" class="modal">
+        <div class="modal-content" style="background: transparent; align-items: center; padding-bottom: 20px;">
+            <img id="full-id-photo" src="" style="max-width: 100%; max-height: 70vh; border-radius: 12px; object-fit: contain;">
+            <button class="btn-outline" style="margin-top: 20px; background: rgba(0,0,0,0.5); color: white; border: none;" onclick="closeModal('modal-view-photo')"><i class="ph ph-x"></i> Close</button>
         </div>
     </div>
 
@@ -492,6 +400,7 @@
 
 <script>
     // ================= SUPABASE INITIALIZATION =================
+    // Declared exactly once as requested
     const supabaseUrl = 'https://Njqfgfwxdjsewubkefaj.supabase.co';
     const supabaseKey = 'sb_publishable_43m0NAzvfWnSlinQpaISZg_5nZ191RQ';
     const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
@@ -500,16 +409,13 @@
     let currentUser = JSON.parse(localStorage.getItem('sbj_user')) || null;
     let requests = [];
     let notifications = [];
-    let batrisiUpdates = [];
     
     let activeLabRequest = null;
-    let uploadedIdPhotoBase64 = null; 
     let uploadedPrescriptionBase64 = null;
     let uploadedInvoiceBase64 = null;
     
     let reqSubscription = null;
     let notifSubscription = null;
-    let batrisiSubscription = null;
 
     // ================= UTILITIES =================
     function showToast(msg, type = 'success') {
@@ -529,7 +435,6 @@
         setTimeout(() => toast.classList.remove('show'), 3000);
     }
 
-    // SPA Routing strictly enforced to match original prompt "Keep CSS and Layout exactly the same"
     function switchScreen(screenId) {
         document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
         document.getElementById(screenId).classList.add('active');
@@ -553,7 +458,6 @@
         }
     }
 
-    // Local Base64 Compression to avoid needing complex Supabase Storage Buckets just for UI mapping
     function compressImage(file, maxWidth, maxHeight, quality, callback) {
         const reader = new FileReader();
         reader.readAsDataURL(file);
@@ -575,13 +479,6 @@
                 callback(canvas.toDataURL('image/jpeg', quality));
             }
         }
-    }
-
-    function handlePhotoUpload(event) {
-        const file = event.target.files[0];
-        if (file) compressImage(file, 800, 800, 0.7, (base64) => {
-            uploadedIdPhotoBase64 = base64;
-        });
     }
 
     function handlePrescriptionUpload(event) {
@@ -632,50 +529,52 @@
 
     function updateNotifUI() {
         if (!currentUser) return;
-        const roles = ['admin', 'member', 'lab', 'committee'];
         let unreadCount = notifications.filter(n => !n.read && n.to_user !== 'all').length; 
+        
+        let role = currentUser.role.toLowerCase();
+        if (role === 'laboratory') role = 'lab';
 
-        roles.forEach(role => {
-            const list = document.getElementById(`notifList-${role}`);
-            const count = document.getElementById(`notifCount-${role}`);
-            if (!list || !count) return;
+        const list = document.getElementById(`notifList-${role}`);
+        const count = document.getElementById(`notifCount-${role}`);
+        if (!list || !count) return;
 
-            list.innerHTML = "";
-            notifications.forEach((n) => {
-                const li = document.createElement("li");
-                li.className = (n.read) ? "" : "unread";
-                let titleHtml = n.title ? `<strong style="display:block; color:var(--accent-color); margin-bottom:4px;">${n.title}</strong>` : '';
-                li.innerHTML = `${titleHtml}${n.message}<small>${new Date(n.created_at).toLocaleString()}</small>`;
-                
-                li.onclick = async () => {
-                    if (n.to_user !== 'all') {
-                        await supabase.from('notifications').update({ read: true }).eq('id', n.id);
-                        fetchNotifications();
-                    }
-                };
-                list.appendChild(li);
-            });
-
-            count.innerText = unreadCount;
-            count.style.display = unreadCount > 0 ? "block" : "none";
+        list.innerHTML = "";
+        notifications.forEach((n) => {
+            const li = document.createElement("li");
+            li.className = (n.read) ? "" : "unread";
+            let titleHtml = n.title ? `<strong style="display:block; color:var(--accent-color); margin-bottom:4px;">${n.title}</strong>` : '';
+            li.innerHTML = `${titleHtml}${n.message}<small>${new Date(n.created_at).toLocaleString()}</small>`;
+            
+            li.onclick = async () => {
+                if (n.to_user !== 'all') {
+                    await supabase.from('notifications').update({ read: true }).eq('id', n.id);
+                    fetchNotifications();
+                }
+            };
+            list.appendChild(li);
         });
+
+        count.innerText = unreadCount;
+        count.style.display = unreadCount > 0 ? "block" : "none";
     }
 
-    function toggleNotifications() {
-        const roles = ['admin', 'member', 'lab', 'committee'];
-        roles.forEach(role => {
-            const dropdown = document.getElementById(`notifDropdown-${role}`);
-            if (dropdown && dropdown.parentElement.contains(event.target.closest('.notification-container'))) {
-                dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
-            } else if (dropdown) {
-                dropdown.style.display = "none";
-            }
-        });
+    function toggleNotifications(role) {
+        const dropdown = document.getElementById(`notifDropdown-${role}`);
+        if (dropdown) {
+            dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+        }
     }
 
     async function sendNotification(to_user, title, message) {
         await supabase.from('notifications').insert([{ to_user, title, message, read: false }]);
+        fetchNotifications();
     }
+
+    window.addEventListener('click', function(e) {
+        if (!e.target.closest('.notification-container')) {
+            document.querySelectorAll('.notif-dropdown').forEach(d => d.style.display = 'none');
+        }
+    });
 
     // ================= REALTIME REQUESTS & WORKFLOW =================
     async function setupRequestsListener(role) {
@@ -689,7 +588,7 @@
             if (role === 'Committee') query = query.eq('committee_member_id', currentUser.id);
             if (role === 'Laboratory') query = query.eq('lab', currentUser.name);
 
-            const { data } = await query;
+            const { data, error } = await query;
             if (data) {
                 requests = data;
                 refreshCurrentView();
@@ -699,7 +598,6 @@
         await fetchAllRequests();
         await fetchNotifications();
         
-        // Listeners for Postgres Changes
         reqSubscription = supabase.channel('custom-all-channel')
             .on('postgres_changes', { event: '*', schema: 'public', table: 'medical_requests' }, payload => {
                 fetchAllRequests();
@@ -716,18 +614,20 @@
     function refreshCurrentView() {
         if (!currentUser) return;
         if (currentUser.role === 'Admin') renderAdminRequests();
-        if (currentUser.role === 'Member') renderMemberStatus(); 
+        if (currentUser.role === 'Member') {
+            if(document.getElementById('nav-member-status').classList.contains('active')) renderMemberStatus();
+        }
         if (currentUser.role === 'Committee') renderCommitteeRequests();
         if (currentUser.role === 'Laboratory') renderLabRequests();
     }
 
-    // ================= AUTHENTICATION LOGIC (SUPABASE 3-LEVEL) =================
+    // ================= AUTHENTICATION LOGIC =================
     document.getElementById('login-form').addEventListener('submit', async (e) => {
         e.preventDefault();
         const id = document.getElementById('login-id').value.trim();
         const pass = document.getElementById('login-password').value;
 
-        // Level 1: Check Committee Table for Admin, Laboratory, or Committee Roles
+        // Level 1: Check Committee Table (Admin, Lab, Committee)
         const { data: commData, error: commError } = await supabase
             .from('committee')
             .select('*')
@@ -741,7 +641,7 @@
             return;
         }
 
-        // Level 2: Check Members Table for Members
+        // Level 2: Check Members Table (Member)
         const { data: memData, error: memError } = await supabase
             .from('members')
             .select('*')
@@ -755,7 +655,7 @@
             return;
         }
 
-        showToast("Invalid credentials! User not found in database.", 'error');
+        showToast("Invalid credentials! User not found.", 'error');
     });
 
     function finishLogin(role) {
@@ -810,11 +710,10 @@
 
         uploadedPrescriptionBase64 = null;
 
-        // Fetch committee members from Supabase table where role is Committee
+        // Fetch committee members & Labs from Supabase
         const { data: commMembers } = await supabase.from('committee').select('username, name').eq('role', 'Committee');
         let committeeOptions = (commMembers || []).map(m => `<option value="${m.username}">${m.name}</option>`).join('');
         
-        // Fetch Labs
         const { data: labMembers } = await supabase.from('committee').select('name').eq('role', 'Laboratory');
         let labOptions = (labMembers || []).map(l => `<option value="${l.name}">${l.name}</option>`).join('');
 
@@ -1124,10 +1023,6 @@
             await supabase.from('medical_requests').delete().eq('id', id);
             showToast("Deleted");
         }
-    }
-
-    function openBatrisiProgramsAdmin() {
-        openModal('modal-batrisi-programs');
     }
 
 </script>
