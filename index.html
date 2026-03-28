@@ -596,7 +596,7 @@
         <!-- Member Bottom Nav -->
         <div class="bottom-nav">
             <div class="nav-item active" id="nav-member-apply" onclick="renderMemberApply()"><i class="ph-fill ph-plus-circle"></i><span>Apply</span></div>
-            <div class="nav-item" id="nav-member-status" onclick="renderMemberStatus()"><i class="ph ph-clock-counter-clockwise"></i><span>Status</span></div>
+            <div class="nav-item" id="nav-member-status" onclick="renderMemberstatus()"><i class="ph ph-clock-counter-clockwise"></i><span>Status</span></div>
             <div class="nav-item" id="nav-member-programs" onclick="renderMemberPrograms()"><i class="ph ph-calendar-star"></i><span>Programs</span></div>
             <div class="nav-item" onclick="logout()"><i class="ph ph-sign-out"></i><span>Logout</span></div>
         </div>
@@ -909,7 +909,7 @@
                 timestamp: Date.now(),
                 read: false
             }]);
-            triggerPush('all_members', title, body, true);
+            triggerPush('all_Members', title, body, true);
         } catch (error) {
             console.error("Error sending notification:", error);
         }
@@ -1104,8 +1104,8 @@
         const { data } = await _sb.from('batrisi_updates').select('*').order('createdAt', { ascending: false });
         if (data) {
             batrisiUpdates = data;
-            const memberScreen = document.getElementById('screen-member');
-            if (memberScreen && memberScreen.classList.contains('active')) {
+            const Memberscreen = document.getElementById('screen-member');
+            if (Memberscreen && Memberscreen.classList.contains('active')) {
                 const navProg = document.getElementById('nav-member-programs');
                 if (navProg && navProg.classList.contains('active')) renderMemberPrograms();
             }
@@ -1169,14 +1169,14 @@
     function updateUIAfterRequestsFetch() {
         if (!currentUser) return;
         const adminScreen = document.getElementById('screen-admin');
-        const memberScreen = document.getElementById('screen-member');
+        const Memberscreen = document.getElementById('screen-member');
         const committeeScreen = document.getElementById('screen-committee');
         const labScreen = document.getElementById('screen-lab');
 
         if (adminScreen && adminScreen.classList.contains('active')) renderAdminRequests();
-        if (memberScreen && memberScreen.classList.contains('active')) {
+        if (Memberscreen && Memberscreen.classList.contains('active')) {
             const navStatus = document.getElementById('nav-member-status');
-            if (navStatus && navStatus.classList.contains('active')) renderMemberStatus();
+            if (navStatus && navStatus.classList.contains('active')) renderMemberstatus();
         }
         if (committeeScreen && committeeScreen.classList.contains('active')) {
             const navProgCom = document.getElementById('nav-committee-programs');
@@ -1603,7 +1603,7 @@
         const pass = document.getElementById('manual-mem-pass').value.trim();
         
         try {
-            await _sb.from('members').upsert({ Member_Number: memNo, Name: name, Address: address, Native_Name: native, Mobile: mobile, Password: pass });
+            await _sb.from('Members').upsert({ Member_Number: memNo, Name: name, Address: address, Native_Name: native, Mobile: mobile, Password: pass });
             showToast("Member Added Successfully!");
             e.target.reset();
             closeModal('modal-add-member');
@@ -1626,14 +1626,14 @@
             const worksheet = workbook.Sheets[firstSheetName];
             const json = XLSX.utils.sheet_to_json(worksheet, { defval: "" });
             
-            let membersToUpload = [];
+            let MembersToUpload = [];
             
             json.forEach(row => {
                 const normalizedRow = {};
                 for(let key in row) { normalizedRow[key.toLowerCase().replace(/\s+/g, '')] = String(row[key]).trim(); }
                 const memNo = normalizedRow.membernumber || normalizedRow.id || normalizedRow.memberno || normalizedRow.member_number;
                 if (memNo) {
-                    membersToUpload.push({
+                    MembersToUpload.push({
                         Member_Number: memNo,
                         Name: normalizedRow.name || normalizedRow.membername || "Unknown",
                         Address: normalizedRow.address || "N/A",
@@ -1644,19 +1644,19 @@
                 }
             });
 
-            if(membersToUpload.length === 0) {
-                showToast("No valid members found in file.", "error");
+            if(MembersToUpload.length === 0) {
+                showToast("No valid Members found in file.", "error");
                 document.getElementById('excel-file-name').innerText = "Tap to browse or drop .csv / .xlsx file here";
                 return;
             }
 
             try {
                 const chunkSize = 500;
-                for (let i = 0; i < membersToUpload.length; i += chunkSize) {
-                    const chunk = membersToUpload.slice(i, i + chunkSize);
-                    await _sb.from('members').upsert(chunk);
+                for (let i = 0; i < MembersToUpload.length; i += chunkSize) {
+                    const chunk = MembersToUpload.slice(i, i + chunkSize);
+                    await _sb.from('Members').upsert(chunk);
                 }
-                showToast(`Success! Loaded ${membersToUpload.length} members.`);
+                showToast(`Success! Loaded ${MembersToUpload.length} Members.`);
                 closeModal('modal-upload-excel');
                 document.getElementById('excel-file-name').innerText = "Tap to browse or drop .csv / .xlsx file here";
                 event.target.value = ''; 
@@ -1980,7 +1980,7 @@
                     } catch(e) { console.log("Error fetching committee token", e); }
                 }
                 
-                renderMemberStatus();
+                renderMemberstatus();
             } catch (error) {
                 console.error("Submission Error: ", error);
                 showToast("Failed to submit request. Please try again.", "error");
@@ -1989,7 +1989,7 @@
         });
     }
 
-    function renderMemberStatus() {
+    function renderMemberstatus() {
         document.getElementById('nav-member-status').classList.add('active');
         document.getElementById('nav-member-apply').classList.remove('active');
         if(document.getElementById('nav-member-programs')) {
