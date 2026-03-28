@@ -437,7 +437,7 @@
             <p style="text-align: center; color: var(--text-secondary); font-size: 13px; margin-bottom: 20px;">Upload Excel (.xlsx/.csv) containing Member Details</p>
             
             <div style="background: rgba(240, 148, 51, 0.1); border: 1px solid rgba(240, 148, 51, 0.3); padding: 12px; border-radius: 12px; margin-bottom: 15px; font-size: 12px; color: var(--warning);">
-                <b>Required Columns:</b> MemberNumber, MemberName, Address, NativeName, MobileNumber, Password
+                <b>Required Columns:</b> Member_Number, Name, Address, Native_Name, Mobile, Password
             </div>
 
             <div class="dropzone" id="excel-dropzone" onclick="document.getElementById('excel-file').click()">
@@ -1409,7 +1409,7 @@
         submitBtn.disabled = true;
 
         const role = document.getElementById('login-role').value;
-        const id = document.getElementById('login-id').value.trim();
+        const id = document.getElementById('login-id').value.trim().toUpperCase();
         const pass = document.getElementById('login-password').value.trim();
 
         let authenticated = false;
@@ -1417,28 +1417,25 @@
 
         try {
             if (role === 'Member') {
-                // FIXED: Direct exact match query using Member_Number
                 const { data, error } = await _sb
                     .from('members')
                     .select('*')
-                    .eq('Member_Number', id)
+                    .eq('Member_Number', id.trim())
                     .single();
 
-                // Debug logs requested by user
-                console.log("DB Data:", data);
                 if (error) {
                     console.log("DB Error:", error);
                 }
 
-                // Check if data returned AND Password matches
-                if (data && data.Password === pass) {
+                if (data && data.Password === pass.trim()) {
                     authenticated = true;
-                    // Safely mapping response keys
-                    userData.name = data.Name || data.name || id;
-                    userData.address = data.Address || data.address || "N/A";
-                    userData.native = data.Native_Name || data.native_name || data.Native || "N/A";
-                    userData.mobile = data.Mobile || data.mobile || "N/A";
+                    userData.name = data.Name;
+                    userData.address = data.Address;
+                    userData.native = data.Native_Name;
+                    userData.mobile = data.Mobile;
                 } else {
+                    console.log("Input ID:", id, "Input Pass:", pass);
+                    console.log("DB Data:", data);
                     showToast("Invalid credentials! Please check your Member Number and Password.", "error");
                 }
             } else {
