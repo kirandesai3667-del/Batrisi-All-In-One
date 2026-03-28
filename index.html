@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Batrisi All In One</title>
-    <!-- REMOVED MANIFEST 404 ERROR -->
+    <!-- MANIFEST REMOVED TO PREVENT 404 ERRORS -->
     <meta name="theme-color" content="#000000">
 
     <!-- Fonts & Icons -->
@@ -18,7 +18,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
 
-    <!-- NEW: SUPABASE SDK -->
+    <!-- SUPABASE SDK -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
     <style>
@@ -432,7 +432,7 @@
             <p style="text-align: center; color: var(--text-secondary); font-size: 13px; margin-bottom: 20px;">Upload Excel (.xlsx/.csv) containing Member Details</p>
             
             <div style="background: rgba(240, 148, 51, 0.1); border: 1px solid rgba(240, 148, 51, 0.3); padding: 12px; border-radius: 12px; margin-bottom: 15px; font-size: 12px; color: var(--warning);">
-                <b>Required Columns:</b> MemberNumber, MemberName, Address, NativeName, MobileNumber
+                <b>Required Columns:</b> MemberNumber, Name, Address, NativeName, MobileNumber
             </div>
 
             <div class="dropzone" id="excel-dropzone" onclick="document.getElementById('excel-file').click()">
@@ -469,7 +469,7 @@
             <h3 style="border-top: 1px solid var(--border-color); padding-top: 15px;">Add Member</h3>
             <form id="form-add-committee">
                 <input type="text" id="new-com-name" placeholder="Full Name" required>
-                <input type="text" id="new-com-id" placeholder="Mobile Number" required>
+                <input type="text" id="new-com-id" placeholder="Mobile/Username" required>
                 <input type="text" id="new-com-pass" placeholder="Password" required>
                 <button type="submit" class="btn-success">Save Committee Member</button>
             </form>
@@ -549,14 +549,6 @@
                     <input type="file" id="prog-vid-file" accept="video/mp4,video/x-m4v,video/*" style="background: transparent; padding: 0; border: none; margin-bottom: 5px;">
                     <div style="font-size: 11px; color: var(--text-secondary); margin-bottom: 10px;">Max file size: 100MB</div>
                     <input type="url" id="prog-vid-url" placeholder="OR Paste Video URL (YouTube, Insta, FB, MP4)">
-                    
-                    <div id="video-upload-progress-container" style="display:none; margin-top:10px;">
-                        <div style="font-size: 12px; color: var(--accent-color); margin-bottom: 5px;" id="video-upload-text">Uploading Video: 0%</div>
-                        <div style="width: 100%; background: var(--border-color); height: 6px; border-radius: 3px; overflow: hidden;">
-                            <div id="video-upload-bar" style="width: 0%; background: var(--success); height: 100%;"></div>
-                        </div>
-                        <button type="button" class="btn-danger btn-small" id="btn-cancel-upload" style="margin-top: 10px; width: auto;"><i class="ph ph-x"></i> Cancel Upload</button>
-                    </div>
                 </div>
 
                 <button type="submit" class="btn-success" style="margin-top: 15px;">Post Update</button>
@@ -824,7 +816,7 @@
     
     const _sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
     
-    // ================= NEW FCM & PUSH LOGIC =================
+    // ================= NEW FCM & PUSH LOGIC (PRESERVED EXTERNAL API) =================
     const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbziAXx2aFWYUCCiRFCxYVX1I4eOUIlgBOhiMXBpdoiFh2fUtiJ8SXD007DEbUOlOL05wg/exec';
 
     // Push notification trigger external API (retained functionality)
@@ -1321,14 +1313,14 @@
         try {
             if (role === 'Member') {
                 if (pass === 'Bat@123') {
-                    // Optimized single member query
-                    const { data, error } = await _sb.from('members').select('*').eq('member_id', id.toUpperCase()).single();
+                    // Optimized single member query matching EXACT Column Name "Member_Number"
+                    const { data, error } = await _sb.from('members').select('*').eq('Member_Number', id.toUpperCase()).single();
                     if (data) {
                         authenticated = true;
-                        userData.name = data.name;
-                        userData.address = data.address;
-                        userData.native = data.native_name;
-                        userData.mobile = data.mobile_number;
+                        userData.name = data.Name;
+                        userData.address = data.Address;
+                        userData.native = data.Native_Name;
+                        userData.mobile = data.Mobile_Number;
                     } else {
                         showToast("Member Number not found in database. Contact Admin.", "error");
                     }
@@ -1336,7 +1328,7 @@
                     showToast("Invalid password!", 'error');
                 }
             } else {
-                // Admin, Committee, Lab logic using committee table
+                // Admin, Committee, Lab logic using committee table exactly mapping role, user, pass
                 const { data, error } = await _sb.from('committee')
                     .select('*')
                     .eq('username', id)
@@ -1501,7 +1493,8 @@
         const native = document.getElementById('manual-mem-native').value.trim();
         const mobile = document.getElementById('manual-mem-mobile').value.trim();
         
-        const data = { member_id: memNo, name: name, address: address, native_name: native, mobile_number: mobile, password: 'Bat@123' };
+        // Exact Member Table Columns
+        const data = { Member_Number: memNo, Name: name, Address: address, Native_Name: native, Mobile_Number: mobile, Password: 'Bat@123' };
         const { error } = await _sb.from('members').upsert([data]);
         
         if(error) {
@@ -1537,13 +1530,14 @@
                 }
                 const memNo = normalizedRow.membernumber || normalizedRow.id || normalizedRow.memberno;
                 if (memNo) {
+                    // Exact Member Table Columns
                     membersToUpload.push({
-                        member_id: memNo.toUpperCase(),
-                        name: normalizedRow.name || normalizedRow.membername || "Unknown",
-                        address: normalizedRow.address || "N/A",
-                        native_name: normalizedRow.nativename || normalizedRow.native || "N/A",
-                        mobile_number: normalizedRow.mobile || normalizedRow.mobilenumber || normalizedRow.phone || "N/A",
-                        password: 'Bat@123'
+                        Member_Number: memNo.toUpperCase(),
+                        Name: normalizedRow.name || normalizedRow.membername || "Unknown",
+                        Address: normalizedRow.address || "N/A",
+                        Native_Name: normalizedRow.nativename || normalizedRow.native || "N/A",
+                        Mobile_Number: normalizedRow.mobile || normalizedRow.mobilenumber || normalizedRow.phone || "N/A",
+                        Password: 'Bat@123'
                     });
                 }
             });
@@ -1871,7 +1865,6 @@
                 const comMember = committeeList.find(c => c.name === newReq.assignedCommittee);
                 if (comMember) {
                     addNotification(`New medical request from ${currentUser.name}.`, comMember.username);
-                    // triggerPush logic optional here...
                 }
                 
                 renderMemberStatus();
