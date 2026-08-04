@@ -61,18 +61,13 @@
         .wa-stat-box { display:flex; justify-content:space-between; margin-bottom:10px; font-size:14px; font-weight:600;}
         .wa-bar-bg { width:100%; background:#e2e8f0; height:12px; border-radius:10px; overflow:hidden; position: relative;}
         .wa-bar-fill { height:100%; background:linear-gradient(90deg, #10b981, #34d399); transition:width 0.4s ease; width:0%; border-radius:10px;}
-
-        /* Sub-tab navigation styles */
         .wa-tab-btn { background: #e2e8f0; border: none; padding: 10px 18px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 14px; transition: 0.2s; display: flex; align-items: center; gap: 8px; color: var(--dark); }
         .wa-tab-btn.active { background: var(--primary); color: white; }
-
-        /* Enterprise Edition Additions */
         .settings-box { background: #f1f5f9; border: 1px solid #cbd5e1; border-radius: 8px; padding: 15px; margin-top: 15px; font-size: 13px; }
         .settings-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 10px; }
         .mini-input { width: 60px; padding: 5px; border-radius: 4px; border: 1px solid #cbd5e1; text-align: center; }
         .btn-outline { background: transparent; border: 1px solid var(--primary); color: var(--primary); padding: 8px 15px; border-radius: 6px; cursor: pointer; font-weight: 600; transition: 0.3s; }
         .btn-outline:hover { background: var(--primary); color: white; }
-
         .premium-dashboard { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-bottom: 25px; }
         .stat-card { background: white; padding: 25px; border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); text-align: center; display: flex; flex-direction: column; align-items: center; gap: 10px;}
         .stat-card i { font-size: 30px; color: var(--primary); }
@@ -85,19 +80,42 @@
         .badge.success { background: #10b981; } .badge.warning { background: #f59e0b; } .badge.danger { background: #ef4444; } .badge.info { background: #3b82f6; }
         .premium-filter-bar { display: flex; gap: 10px; background: #f8fafc; padding: 15px; border-radius: 8px; border: 1px solid var(--border); margin-bottom: 15px; flex-wrap: wrap;}
 
-        /* FEE-SHIP PRINT CSS */
-        @media print {
-            body > *:not(#printArea) { display: none !important; }
-            #printArea { display: block !important; position: absolute; top: 0; left: 0; width: 100%; background: white; margin: 0; padding: 30px; font-family: 'Poppins', sans-serif; color: #000; }
-            .print-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-            .print-table th, .print-table td { border: 1px solid #000; padding: 10px; text-align: left; font-size: 14px; }
-            .print-table th { background-color: #f1f5f9 !important; -webkit-print-color-adjust: exact; width: 35%; font-weight: bold;}
-            .print-header { text-align: center; margin-bottom: 30px; border-bottom: 2px solid #000; padding-bottom: 15px; }
-        }
-        
-        /* Two column layout for Fee-Ship form */
+        /* FEE-SHIP PREMIUM UI */
         .fs-form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
         @media (max-width: 600px) { .fs-form-grid { grid-template-columns: 1fr; } }
+        
+        .fs-panel { background: #ffffff; border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
+        .fs-panel-header { display: flex; align-items: center; gap: 10px; font-size: 16px; font-weight: 700; border-bottom: 2px solid var(--border); padding-bottom: 10px; margin-bottom: 15px; }
+        
+        .fs-panel.blue { border-top: 4px solid #3b82f6; }
+        .fs-panel.blue .fs-panel-header { color: #3b82f6; }
+        
+        .fs-panel.green { border-top: 4px solid #10b981; }
+        .fs-panel.green .fs-panel-header { color: #10b981; }
+        
+        .fs-panel.orange { border-top: 4px solid #f59e0b; }
+        .fs-panel.orange .fs-panel-header { color: #f59e0b; }
+
+        /* OFFICIAL PRINT CSS FOR FEE-SHIP */
+        @media print {
+            body > *:not(#printArea) { display: none !important; }
+            #printArea { display: block !important; position: absolute; top: 0; left: 0; width: 100%; background: white; margin: 0; padding: 40px; font-family: 'Arial', sans-serif; color: #000; }
+            
+            .print-wrapper { border: 2px solid #000; padding: 30px; position: relative; }
+            
+            .print-header { text-align: center; margin-bottom: 20px; border-bottom: 3px double #000; padding-bottom: 20px; }
+            .print-header h2 { font-size: 26px; margin: 0; text-transform: uppercase; letter-spacing: 1px; }
+            .print-header h3 { font-size: 18px; margin-top: 10px; text-decoration: underline; color: #333; }
+            
+            .print-section-title { font-size: 14px; font-weight: bold; margin-top: 25px; margin-bottom: 0px; text-transform: uppercase; background: #e2e8f0 !important; -webkit-print-color-adjust: exact; padding: 8px 12px; border: 1px solid #000; border-bottom: none; }
+            
+            .print-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+            .print-table th, .print-table td { border: 1px solid #000; padding: 10px 12px; text-align: left; }
+            .print-table th { background-color: #f8fafc !important; -webkit-print-color-adjust: exact; width: 35%; font-weight: bold; color: #000; }
+            
+            .print-footer { margin-top: 60px; display: flex; justify-content: space-between; font-weight: bold; font-size: 14px; }
+            .print-footer div { text-align: center; }
+        }
     </style>
 </head>
 <body>
@@ -125,7 +143,9 @@
         <button class="nav-btn" onclick="initCMS('gallery', 'Gallery (Multi Image)')">Manage Gallery</button>
         <button class="nav-btn" onclick="initCMS('committee', 'Committee')">Manage Committee</button>
         <button class="nav-btn" onclick="initCMS('downloads', 'Downloads')">Manage Downloads</button>
+        
         <button class="nav-btn" onclick="initFeeShip()"><i class="fa-solid fa-graduation-cap"></i> Manage Fee-Ship</button>
+        
         <button class="nav-btn" style="border-top: 1px solid rgba(255,255,255,0.1);" onclick="initCMS('members', 'Members Database')"><i class="fa-solid fa-users"></i> Manage Members</button>
         
         <button class="nav-btn" style="border-top: 1px solid rgba(255,255,255,0.1); color: #25D366; font-weight: 600;" onclick="openWABroadcast()"><i class="fa-brands fa-whatsapp"></i> 1-Click Auto Sender</button>
@@ -165,11 +185,14 @@
                 </div>
                 <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
                     <input type="text" id="fsSearchInput" placeholder="Search Member/Student/Form..." style="padding:10px; border-radius:8px; border:1px solid var(--border); outline:none; min-width:250px;" onkeyup="searchFeeShipRecords()">
-                    <button class="btn-add" onclick="openFeeShipModal()"><i class="fa-solid fa-plus"></i> Add Fee-Ship Record</button>
+                    <button class="btn-add" onclick="openFeeShipModal()"><i class="fa-solid fa-plus"></i> Add Record</button>
+                    
+                    <button class="btn-add" style="background:#10b981;" onclick="exportFeeShipToCSV()"><i class="fa-solid fa-file-excel"></i> Export Excel</button>
+                    
                     <div style="border-left: 2px solid var(--border); padding-left: 10px; display:flex; gap:10px;">
                         <input type="file" id="fsCsvFileInput" accept=".csv" style="display:none;" onchange="uploadFeeShipCSV(this)">
-                        <button class="btn-add" style="background:#0284c7;" onclick="document.getElementById('fsCsvFileInput').click()"><i class="fa-solid fa-upload"></i> Upload / Replace CSV</button>
-                        <button class="btn-add" style="background:#ef4444;" onclick="deleteFeeShipCSV()"><i class="fa-solid fa-trash"></i> Delete CSV Data</button>
+                        <button class="btn-add" style="background:#0284c7;" onclick="document.getElementById('fsCsvFileInput').click()"><i class="fa-solid fa-upload"></i> Upload CSV</button>
+                        <button class="btn-add" style="background:#ef4444;" onclick="deleteFeeShipCSV()"><i class="fa-solid fa-trash"></i> Delete CSV</button>
                     </div>
                 </div>
             </div>
@@ -190,10 +213,10 @@
             </div>
         </div>
 
+        <!-- Dashboard / Analytics Container -->
         <div id="dashboard-container" style="display:none;">
             <div class="toolbar">
                 <div><h1>Live Analytics Dashboard</h1><p style="color:#64748b; font-size:14px;">System Health & Broadcast Metrics</p></div>
-                <!-- ADDED VISITOR RESET OPTION HERE -->
                 <button class="btn-outline" onclick="resetVisitorCounter()" style="border-color:#f59e0b; color:#f59e0b;"><i class="fa-solid fa-rotate-right"></i> Reset Visitor Count</button>
             </div>
             <div class="premium-dashboard">
@@ -260,7 +283,6 @@
                 <button id="subtab-committee-btn" class="wa-tab-btn" onclick="switchWASubTab('committee')">
                     <i class="fa-solid fa-user-shield"></i> Committee Member Sender
                 </button>
-                <!-- 🔥 DIRECT GROUP MANAGER TAB -->
                 <button id="subtab-group-btn" class="wa-tab-btn" onclick="switchWASubTab('group')" style="color:#0284c7;">
                     <i class="fa-solid fa-layer-group"></i> Direct Group Manager
                 </button>
@@ -470,63 +492,83 @@
         </div>
     </div>
 
-    <!-- FEE-SHIP MODAL -->
+    <!-- PREMIUM FEE-SHIP MODAL -->
     <div class="modal" id="feeShipModal">
-        <div class="modal-content" style="max-width: 800px;">
-            <h2 id="fsModalTitle" style="margin-bottom:20px;">Add/Edit Fee-Ship Record</h2>
+        <div class="modal-content" style="max-width: 850px; padding: 35px; background: #f8fafc;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:25px;">
+                <h2 id="fsModalTitle" style="margin:0;"><i class="fa-solid fa-graduation-cap" style="color:var(--primary);"></i> Add Fee-Ship Record</h2>
+                <button onclick="closeFeeShipModal()" style="background:none; border:none; font-size:22px; cursor:pointer; color:#64748b;"><i class="fa-solid fa-xmark"></i></button>
+            </div>
             
-            <div style="background: #f8fafc; padding: 15px; border-radius: 8px; border: 1px solid var(--border); margin-bottom: 20px;">
-                <h4 style="margin-bottom:10px; color:var(--primary);"><i class="fa-solid fa-user-check"></i> Member Details Auto-Fetch</h4>
-                <div class="form-group" style="display:flex; gap:10px; align-items:flex-end;">
+            <!-- Panel 1: Member Data Fetch -->
+            <div class="fs-panel blue">
+                <div class="fs-panel-header"><i class="fa-solid fa-user-check"></i> 1. Member Auto-Fetch</div>
+                <div class="form-group" style="display:flex; gap:15px; align-items:flex-end;">
                     <div style="flex:1;">
-                        <label>Member Number *</label>
-                        <input type="text" id="fs_memberNumber" placeholder="Enter Member No..." onblur="autoFetchMemberDetails()">
+                        <label>Enter Member Number *</label>
+                        <input type="text" id="fs_memberNumber" placeholder="e.g. 1245..." onblur="autoFetchMemberDetails()" style="font-size:16px; font-weight:bold; border-color:#3b82f6;">
                     </div>
-                    <button onclick="autoFetchMemberDetails()" class="btn-add" style="height: 41px;">Fetch</button>
+                    <button onclick="autoFetchMemberDetails()" class="btn-add" style="height: 44px; background:#3b82f6;"><i class="fa-solid fa-magnifying-glass"></i> Fetch Data</button>
                 </div>
-                <div id="fs_fetch_msg" style="font-size:12px; font-weight:600; margin-bottom:10px;"></div>
+                <div id="fs_fetch_msg" style="font-size:13px; font-weight:600; margin-bottom:15px; min-height:18px;"></div>
                 
                 <div class="fs-form-grid">
-                    <div class="form-group"><label>Member Name</label><input type="text" id="fs_memberName" readonly style="background:#e2e8f0;"></div>
-                    <div class="form-group"><label>Native Name</label><input type="text" id="fs_nativeName" readonly style="background:#e2e8f0;"></div>
-                    <div class="form-group"><label>Mobile Number</label><input type="text" id="fs_mobileNumber" readonly style="background:#e2e8f0;"></div>
-                    <div class="form-group"><label>Address</label><textarea id="fs_address" readonly style="background:#e2e8f0; height:41px;"></textarea></div>
+                    <div class="form-group"><label>Member Name</label><input type="text" id="fs_memberName" readonly style="background:#e2e8f0; color:#475569;"></div>
+                    <div class="form-group"><label>Native Name (Gaam)</label><input type="text" id="fs_nativeName" readonly style="background:#e2e8f0; color:#475569;"></div>
+                    <div class="form-group"><label>Mobile Number</label><input type="text" id="fs_mobileNumber" readonly style="background:#e2e8f0; color:#475569;"></div>
+                    <div class="form-group"><label>Address</label><input type="text" id="fs_address" readonly style="background:#e2e8f0; color:#475569;"></div>
                 </div>
             </div>
 
-            <h4 style="margin-bottom:10px; border-bottom:1px solid var(--border); padding-bottom:5px;"><i class="fa-solid fa-user-graduate"></i> Student & Bank Information</h4>
-            <div class="fs-form-grid">
-                <div class="form-group"><label>Student Name *</label><input type="text" id="fs_studentName"></div>
-                <div class="form-group"><label>Relationship with Member *</label><input type="text" id="fs_relationship" placeholder="e.g. Son, Daughter"></div>
-                
-                <div class="form-group"><label>Standard (Std.) *</label><input type="text" id="fs_standard"></div>
-                <div class="form-group"><label>Medium *</label><input type="text" id="fs_medium"></div>
-                <div class="form-group"><label>Faculty</label><input type="text" id="fs_faculty"></div>
-                
-                <div class="form-group"><label>Form Number *</label><input type="text" id="fs_formNumber"></div>
-                <div class="form-group"><label>Form Submit Date *</label><input type="date" id="fs_submitDate"></div>
-                
-                <div class="form-group"><label>Bank Name *</label><input type="text" id="fs_bankName"></div>
-                <div class="form-group"><label>Bank Branch</label><input type="text" id="fs_bankBranch"></div>
-                <div class="form-group"><label>Account Holder Name *</label><input type="text" id="fs_accHolderName"></div>
-                <div class="form-group"><label>Account Number *</label><input type="text" id="fs_accNumber"></div>
-                <div class="form-group"><label>IFSC Code *</label><input type="text" id="fs_ifscCode"></div>
+            <!-- Panel 2: Student Details -->
+            <div class="fs-panel green">
+                <div class="fs-panel-header"><i class="fa-solid fa-user-graduate"></i> 2. Student & Education Details</div>
+                <div class="fs-form-grid">
+                    <div class="form-group"><label>Student Full Name *</label><input type="text" id="fs_studentName"></div>
+                    <div class="form-group"><label>Relationship with Member *</label><input type="text" id="fs_relationship" placeholder="e.g. Son, Daughter"></div>
+                    <div class="form-group"><label>Standard (Std.) *</label><input type="text" id="fs_standard" placeholder="e.g. 10th, B.Com"></div>
+                    <div class="form-group"><label>Medium *</label>
+                        <select id="fs_medium" class="wa-input" style="margin-top:0; padding:10px;">
+                            <option value="">Select Medium</option>
+                            <option value="English">English</option>
+                            <option value="Gujarati">Gujarati</option>
+                            <option value="Hindi">Hindi</option>
+                        </select>
+                    </div>
+                    <div class="form-group"><label>Faculty / Stream</label><input type="text" id="fs_faculty" placeholder="e.g. Commerce, Science"></div>
+                </div>
             </div>
 
-            <div style="display:flex; justify-content: flex-end; gap:10px; margin-top:25px;">
-                <button onclick="closeFeeShipModal()" style="padding:10px 20px; background:#e2e8f0; border:none; border-radius:8px; cursor:pointer;">Cancel</button>
-                <button id="fsSaveBtn" onclick="saveFeeShipRecord()" style="padding:10px 25px; background:var(--primary); color:white; border:none; border-radius:8px; cursor:pointer; font-weight:700; font-size:15px;">SAVE FEE-SHIP</button>
+            <!-- Panel 3: Bank & Form Info -->
+            <div class="fs-panel orange" style="margin-bottom: 0;">
+                <div class="fs-panel-header"><i class="fa-solid fa-building-columns"></i> 3. Bank & Form Details</div>
+                <div class="fs-form-grid">
+                    <div class="form-group"><label>Form Number *</label><input type="text" id="fs_formNumber" placeholder="e.g. 101"></div>
+                    <div class="form-group"><label>Form Submit Date *</label><input type="date" id="fs_submitDate"></div>
+                    <div class="form-group"><label>Bank Name *</label><input type="text" id="fs_bankName"></div>
+                    <div class="form-group"><label>Bank Branch</label><input type="text" id="fs_bankBranch"></div>
+                    <div class="form-group"><label>Account Holder Name *</label><input type="text" id="fs_accHolderName"></div>
+                    <div class="form-group"><label>Account Number *</label><input type="text" id="fs_accNumber"></div>
+                    <div class="form-group"><label>IFSC Code *</label><input type="text" id="fs_ifscCode"></div>
+                </div>
+            </div>
+
+            <div style="display:flex; justify-content: flex-end; gap:15px; margin-top:25px;">
+                <button onclick="closeFeeShipModal()" style="padding:12px 25px; background:transparent; border:2px solid #cbd5e1; color:#475569; border-radius:8px; cursor:pointer; font-weight:600;">Cancel</button>
+                <button id="fsSaveBtn" onclick="saveFeeShipRecord()" style="padding:12px 30px; background:var(--primary); color:white; border:none; border-radius:8px; cursor:pointer; font-weight:700; font-size:15px; box-shadow: 0 4px 10px rgba(234, 88, 12, 0.3);"><i class="fa-solid fa-floppy-disk"></i> SAVE RECORD</button>
             </div>
         </div>
     </div>
     
-    <!-- FEE-SHIP HIDDEN PRINT AREA -->
+    <!-- FEE-SHIP OFFICIAL PRINT AREA -->
     <div id="printArea">
-        <div class="print-header">
-            <h2>Shree Batrisi Jain Co-Op. Education Society Ltd.</h2>
-            <h3 style="margin-top:5px; color:#475569;">FEE-SHIP APPLICATION RECORD</h3>
+        <div class="print-wrapper">
+            <div class="print-header">
+                <h2>Shree Batrisi Jain Co-Op. Education Society Ltd.</h2>
+                <h3>FEE-SHIP APPLICATION RECORD</h3>
+            </div>
+            <div id="printContent"></div>
         </div>
-        <div id="printContent"></div>
     </div>
     
     <div class="modal" id="backupModal">
@@ -555,6 +597,16 @@
         const db = firebase.firestore();
 
         const WA_API_URL = "http://localhost:3000/api/whatsapp"; 
+
+        // HELPER FUNCTION: Convert YYYY-MM-DD to Indian DD/MM/YYYY Format
+        function formatIndianDate(dateStr) {
+            if (!dateStr) return '-';
+            const parts = dateStr.split('-');
+            if (parts.length === 3) {
+                return `${parts[2]}/${parts[1]}/${parts[0]}`; // Returns DD/MM/YYYY
+            }
+            return dateStr; // fallback for irregular strings
+        }
 
         const schemas = {
             'events': [ {key:'title', label:'Event Title'}, {key:'date', label:'Event Date'}, {key:'desc', label:'Description', isArea:true}, {key:'image', label:'Image', isFile:true} ],
@@ -715,11 +767,9 @@
 
         let waMembersList = [];
         let waCommitteeList = [];
-        
         let currentWASubTab = 'general'; 
         let isWABotConnected = false;
         let isBroadcastingWA = false;
-        
         let currentCampaignId = null;
         let waQueue = [];
         let waTotalTasks = 0;
@@ -727,19 +777,13 @@
         let waFailedCount = 0;
         let statusInterval = null;
         let receiptInterval = null;
-
         let abSessionCount = 0; 
         let campaignStartTime = null;
-        
         let waConsecutiveFails = 0;
         let microPauseCounter = 0;
         let scheduledTimer = null; 
         let globalDuplicateSet = new Set(); 
         let activeCampaignNative = ""; 
-
-        const SEED_COMMITTEE_MEMBERS = [
-            { memberName: "HITENDRABHAI JASHWANTLAL SHAH", mobileNumber: "9825698298" }
-        ];
 
         function playVoiceAlert(text) {
             try {
@@ -808,7 +852,6 @@
 
             renderWAMembers(waMembersList);
             loadCommitteeSenderList();
-            
             checkExistingCampaign();
         }
 
@@ -963,7 +1006,6 @@
             }
         }
 
-        // 🔥 SMART BULK SYNC (GAAM SE GROUP MEIN)
         async function bulkSyncMembersToGroup() {
             if(!isWABotConnected) return alert("WhatsApp is not connected! Turn on PC Server.");
             
@@ -978,15 +1020,12 @@
             btn.disabled = true;
 
             try {
-                // Get all numbers for this native
                 const memSnap = await db.collection('members').where('nativeName', '==', native).get();
                 let nativeParticipants = []; 
                 
                 memSnap.forEach(doc => {
                     let d = doc.data();
-                    if(d.mobileNumber) {
-                        nativeParticipants.push(d.mobileNumber);
-                    }
+                    if(d.mobileNumber) nativeParticipants.push(d.mobileNumber);
                 });
 
                 if(nativeParticipants.length === 0) {
@@ -1002,7 +1041,6 @@
                     return;
                 }
 
-                // Connection Check Before Sync
                 try {
                     let checkRes = await fetch(WA_API_URL + '/status');
                     if(!checkRes.ok) throw new Error("Status check failed");
@@ -1017,16 +1055,12 @@
                 printLog(`✅ Connected to WhatsApp Server.`, "success");
                 printLog(`⏳ Starting Auto-Sync for ${nativeParticipants.length} members to group "${groupName}". Please wait...`, "info");
 
-                let successCount = 0;
-                let failCount = 0;
-                let skipCount = 0;
-                let total = nativeParticipants.length;
+                let successCount = 0; let failCount = 0; let skipCount = 0; let total = nativeParticipants.length;
 
                 for (let i = 0; i < total; i++) {
                     let rawPhone = nativeParticipants[i];
                     btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Syncing (${i+1}/${total})...`;
 
-                    // Validation & Cleaning
                     let phoneStr = String(rawPhone || '').replace(/[^0-9]/g, '');
                     if (!phoneStr || phoneStr.length < 10 || phoneStr.match(/^0+$/)) {
                         skipCount++;
@@ -1035,8 +1069,7 @@
                     }
                     if (phoneStr.length === 10) phoneStr = '91' + phoneStr;
 
-                    let retries = 2;
-                    let success = false;
+                    let retries = 2; let success = false;
 
                     while(retries > 0 && !success) {
                         try {
@@ -1047,27 +1080,21 @@
                                 body: JSON.stringify({ groupName: groupName, phone: phoneStr })
                             });
 
-                            if(!response.ok) {
-                                throw new Error(`Server rejected with status ${response.status}`);
-                            }
-
+                            if(!response.ok) throw new Error(`Server rejected with status ${response.status}`);
                             const data = await response.json();
 
                             if(data.success) {
-                                success = true;
-                                successCount++;
+                                success = true; successCount++;
                                 printLog(`✅ [${i+1}/${total}] Successfully added ${phoneStr}`, "success");
                             } else {
-                                // If API returned explicit failure (not authorized, already in group), don't retry network
                                 printLog(`❌ [${i+1}/${total}] Failed to add ${phoneStr}: ${data.error || 'Unknown Error'}`, "error");
-                                failCount++;
-                                break; 
+                                failCount++; break; 
                             }
                         } catch(e) {
                             retries--;
                             if(retries > 0) {
                                 printLog(`🔄 Network Error for ${phoneStr}. Retrying...`, "warning");
-                                await new Promise(r => setTimeout(r, 2000)); // wait before retry
+                                await new Promise(r => setTimeout(r, 2000)); 
                             } else {
                                 failCount++;
                                 printLog(`❌ [${i+1}/${total}] Network Error for ${phoneStr} after retries.`, "error");
@@ -1075,7 +1102,6 @@
                         }
                     }
 
-                    // Delay between additions to prevent WhatsApp from flagging/banning
                     if(success) await new Promise(resolve => setTimeout(resolve, 3500));
                     else await new Promise(resolve => setTimeout(resolve, 1500));
                 }
@@ -1093,7 +1119,6 @@
             btn.disabled = false;
         }
 
-        // 🔥 QUICK ADD SINGLE MEMBER TO EXACT NAME
         async function addSingleMemberByGroupName() {
             if(!isWABotConnected) return alert("WhatsApp is not connected! Turn on PC Server.");
             
@@ -1146,18 +1171,12 @@
             
             try {
                 const snap = await db.collection('committee_broadcast').orderBy('timestamp', 'asc').get();
-                if(snap.empty) {
-                    return;
-                }
-
+                if(snap.empty) return;
+                
                 waCommitteeList = [];
-                snap.forEach(doc => {
-                    waCommitteeList.push({ id: doc.id, ...doc.data() });
-                });
+                snap.forEach(doc => { waCommitteeList.push({ id: doc.id, ...doc.data() }); });
                 renderWACommittee(waCommitteeList);
-            } catch(e) {
-                listDiv.innerHTML = `<p style="padding:20px; text-align:center; color:red;">Error loading committee database.</p>`;
-            }
+            } catch(e) { listDiv.innerHTML = `<p style="padding:20px; text-align:center; color:red;">Error loading committee database.</p>`; }
         }
 
         function renderWACommittee(list) {
@@ -1190,39 +1209,20 @@
         async function addCommitteeSenderMember() {
             const nameEl = document.getElementById('wa-comm-add-name');
             const phoneEl = document.getElementById('wa-comm-add-phone');
-            const name = nameEl.value.trim();
-            const phone = phoneEl.value.trim();
+            const name = nameEl.value.trim(); const phone = phoneEl.value.trim();
 
-            if(!name || !phone) {
-                alert("Please fill in both Name and Mobile Number.");
-                return;
-            }
-
+            if(!name || !phone) return alert("Please fill in both Name and Mobile Number.");
+            
             try {
-                await db.collection('committee_broadcast').add({
-                    memberName: name,
-                    mobileNumber: phone,
-                    timestamp: Date.now()
-                });
-                nameEl.value = '';
-                phoneEl.value = '';
-                showToast();
-                loadCommitteeSenderList();
+                await db.collection('committee_broadcast').add({ memberName: name, mobileNumber: phone, timestamp: Date.now() });
+                nameEl.value = ''; phoneEl.value = ''; showToast(); loadCommitteeSenderList();
                 logAdminActivity("Committee DB", `Added committee member: ${name}`);
-            } catch(e) {
-                alert("Database Error!");
-            }
+            } catch(e) { alert("Database Error!"); }
         }
 
         async function deleteCommitteeSenderMember(id) {
             if(!confirm("Remove this member from Committee Sender?")) return;
-            try {
-                await db.collection('committee_broadcast').doc(id).delete();
-                showToast();
-                loadCommitteeSenderList();
-            } catch(e) {
-                alert("Database Error!");
-            }
+            try { await db.collection('committee_broadcast').doc(id).delete(); showToast(); loadCommitteeSenderList(); } catch(e) { alert("Database Error!"); }
         }
 
         function filterWACommittee() {
@@ -1253,37 +1253,28 @@
                     
                     if(data.status === 'CONNECTED') {
                         isWABotConnected = true;
-                        statusTxt.innerText = "🟢 CONNECTED (Ready to Send)";
-                        statusTxt.style.color = "#10b981";
+                        statusTxt.innerText = "🟢 CONNECTED (Ready to Send)"; statusTxt.style.color = "#10b981";
                         qrImg.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/150px-WhatsApp.svg.png";
-                        
-                        if (!isBroadcastingWA && !localStorage.getItem('wa_active_campaign')) {
-                            sendBtn.disabled = false;
-                        }
+                        if (!isBroadcastingWA && !localStorage.getItem('wa_active_campaign')) sendBtn.disabled = false;
                     } else if (data.status === 'QR_READY') {
                         isWABotConnected = false;
-                        statusTxt.innerText = "🟡 Scan the QR Code";
-                        statusTxt.style.color = "#f59e0b";
-                        qrImg.src = WA_API_URL + '/qr.png?t=' + Date.now();
-                        sendBtn.disabled = true;
+                        statusTxt.innerText = "🟡 Scan the QR Code"; statusTxt.style.color = "#f59e0b";
+                        qrImg.src = WA_API_URL + '/qr.png?t=' + Date.now(); sendBtn.disabled = true;
 
                         if(isBroadcastingWA) {
                             playVoiceAlert("Alert. Scanner disconnected.");
-                            printLog("🔴 PC Server waiting for QR. Auto-pausing campaign.", "error");
-                            pauseBroadcast();
+                            printLog("🔴 PC Server waiting for QR. Auto-pausing campaign.", "error"); pauseBroadcast();
                         }
                     }
                 } catch(e) {
                     isWABotConnected = false;
-                    statusTxt.innerText = "🔴 PC Server is Offline";
-                    statusTxt.style.color = "#ef4444";
+                    statusTxt.innerText = "🔴 PC Server is Offline"; statusTxt.style.color = "#ef4444";
                     qrImg.src = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><rect width='200' height='200' fill='%23f1f5f9'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='14' fill='%23ef4444' font-weight='bold'>Turn on PC Server</text></svg>";
                     sendBtn.disabled = true;
 
                     if(isBroadcastingWA) {
                         playVoiceAlert("Alert. Server went offline.");
-                        printLog("🔴 PC Server disconnected. Auto-pausing campaign.", "error");
-                        pauseBroadcast();
+                        printLog("🔴 PC Server disconnected. Auto-pausing campaign.", "error"); pauseBroadcast();
                     }
                 }
             }, 2500);
@@ -1299,13 +1290,9 @@
                         const ackList = await res.json();
                         if(ackList && ackList.length > 0) {
                             ackList.forEach(ack => {
-                                if(ack.status === 'read') {
-                                    printLog(`📖 [Read Receipt] ${ack.name || ack.to} has read your message.`, "success");
-                                } else if(ack.status === 'delivered') {
-                                    printLog(`🚚 [Delivery] Message delivered to ${ack.name || ack.to}.`, "info");
-                                } else if(ack.status === 'replied') {
-                                    printLog(`💬 [Reply Recv] Member ${ack.name || ack.to} sent a response!`, "primary");
-                                }
+                                if(ack.status === 'read') printLog(`📖 [Read Receipt] ${ack.name || ack.to} has read your message.`, "success");
+                                else if(ack.status === 'delivered') printLog(`🚚 [Delivery] Message delivered to ${ack.name || ack.to}.`, "info");
+                                else if(ack.status === 'replied') printLog(`💬 [Reply Recv] Member ${ack.name || ack.to} sent a response!`, "primary");
                             });
                         }
                     }
@@ -1379,24 +1366,12 @@
             
             if(currentWASubTab === 'group') {
                 let exactGroupName = document.getElementById('wa-direct-group-name').value.trim();
-                
                 if(!exactGroupName) return alert("Please type the Exact WhatsApp Group Name first.");
-
                 if(!confirm(`Send ONE single announcement directly to "${exactGroupName}"?`)) return;
                 
                 logAdminActivity("Group Announcement", `Sent 1 message to Group: ${exactGroupName}`);
 
-                waQueue = [{
-                    id: 'GROUP_' + Date.now(),
-                    name: exactGroupName,
-                    phone: exactGroupName, 
-                    isGroup: true, 
-                    isGroupName: true, 
-                    rawMsgTemplate: rawTemplate,
-                    rawLink: linkInput,
-                    status: 'pending',
-                    retries: 0
-                }];
+                waQueue = [{ id: 'GROUP_' + Date.now(), name: exactGroupName, phone: exactGroupName, isGroup: true, isGroupName: true, rawMsgTemplate: rawTemplate, rawLink: linkInput, status: 'pending', retries: 0 }];
                 activeCampaignNative = exactGroupName;
                 
             } else {
@@ -1414,18 +1389,7 @@
 
                 logAdminActivity("Broadcast Started", `Initiated to ${selectedBoxes.length} contacts.`);
 
-                waQueue = selectedBoxes.map(cb => {
-                    return { 
-                        id: cb.dataset.phone + '_' + Date.now(),
-                        name: cb.dataset.name, 
-                        phone: cb.dataset.phone, 
-                        isGroup: false,
-                        rawMsgTemplate: rawTemplate,
-                        rawLink: linkInput,
-                        status: 'pending',
-                        retries: 0
-                    };
-                });
+                waQueue = selectedBoxes.map(cb => { return { id: cb.dataset.phone + '_' + Date.now(), name: cb.dataset.name, phone: cb.dataset.phone, isGroup: false, rawMsgTemplate: rawTemplate, rawLink: linkInput, status: 'pending', retries: 0 }; });
             }
 
             document.getElementById('wa-btn-start').style.display = 'none';
@@ -1438,31 +1402,20 @@
             document.getElementById('wa-logs').innerHTML = ''; 
 
             currentCampaignId = 'CAMP_' + Date.now();
-            campaignStartTime = Date.now();
-            abSessionCount = 0;
-            waConsecutiveFails = 0;
-            microPauseCounter = 0;
-            globalDuplicateSet.clear();
-
-            waTotalTasks = waQueue.length;
-            waSentCount = 0; 
-            waFailedCount = 0;
-            isBroadcastingWA = true;
+            campaignStartTime = Date.now(); abSessionCount = 0; waConsecutiveFails = 0; microPauseCounter = 0; globalDuplicateSet.clear();
+            waTotalTasks = waQueue.length; waSentCount = 0; waFailedCount = 0; isBroadcastingWA = true;
 
             saveCampaignState();
-
             playVoiceAlert("Campaign started. Please do not close the window.");
             printLog(`🚀 Enterprise Campaign Started for ${waTotalTasks} target(s)...`, "info");
-            updateWAUI();
-            processLocalQueue();
+            updateWAUI(); processLocalQueue();
         }
 
         async function processLocalQueue() {
             if(!isBroadcastingWA) return; 
             if(!isWABotConnected) {
                 printLog("⚠️ WhatsApp disconnected. Auto-pausing broadcast.", "error");
-                pauseBroadcast();
-                return;
+                pauseBroadcast(); return;
             }
 
             let maxCount = parseInt(document.getElementById('ab-msg-count').value, 10) || 25;
@@ -1471,9 +1424,7 @@
             if(currentWASubTab !== 'group' && abSessionCount > 0 && abSessionCount % maxCount === 0) {
                 printLog(`🛡️ Anti-Ban Sleep active: Long pause for ${pauseSec} seconds...`, "info");
                 document.getElementById('wa-stat-eta').innerText = `Sleeping for ${pauseSec}s...`;
-                abSessionCount++; 
-                setTimeout(processLocalQueue, pauseSec * 1000);
-                return;
+                abSessionCount++; setTimeout(processLocalQueue, pauseSec * 1000); return;
             }
 
             let itemIndex = waQueue.findIndex(q => q.status === 'pending');
@@ -1484,22 +1435,15 @@
                 if(itemIndex === -1) {
                     isBroadcastingWA = false;
                     printLog(`🎉 Campaign Finished! Sent: ${waSentCount}, Failed: ${waFailedCount}`, "success");
-                    let finishedNative = activeCampaignNative;
-                    stopBroadcast(true); 
-                    return;
-                } else {
-                    printLog(`♻️ Smart Retry: Attempting to send failed message to ${waQueue[itemIndex].name}...`, "info");
-                }
+                    let finishedNative = activeCampaignNative; stopBroadcast(true); return;
+                } else { printLog(`♻️ Smart Retry: Attempting to send failed message to ${waQueue[itemIndex].name}...`, "info"); }
             }
 
             let item = waQueue[itemIndex];
             
             if(!item.isGroup && (item.status === 'sent' || globalDuplicateSet.has(item.phone))) {
                 printLog(`⚠️ Duplicate Guard active: Prevented repeat send to ${item.name}.`, "warning");
-                item.status = 'sent'; 
-                saveCampaignState();
-                setTimeout(processLocalQueue, 500);
-                return;
+                item.status = 'sent'; saveCampaignState(); setTimeout(processLocalQueue, 500); return;
             }
             
             let parsedMsg = applySpintax(item.rawMsgTemplate);
@@ -1513,28 +1457,15 @@
                 printLog(`Sending to Group: ${item.name}...`, "info");
                 try {
                     let payload = { groupName: item.phone, message: userMsg };
-                    const response = await fetch(WA_API_URL + '/group/send', {
-                        method: 'POST', headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(payload)
-                    });
+                    const response = await fetch(WA_API_URL + '/group/send', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
 
                     if(response.ok) {
-                        item.status = 'sent';
-                        waSentCount++;
-                        printLog(`✅ Sent directly to Group!`, "success");
-                        const lastSentEl = document.getElementById('wa-stat-lastsent');
-                        if(lastSentEl) lastSentEl.innerText = item.name;
+                        item.status = 'sent'; waSentCount++; printLog(`✅ Sent directly to Group!`, "success");
+                        const lastSentEl = document.getElementById('wa-stat-lastsent'); if(lastSentEl) lastSentEl.innerText = item.name;
                     } else {
-                        const errData = await response.json();
-                        item.status = 'failed';
-                        waFailedCount++;
-                        printLog(`❌ Failed: ${errData.error || 'Check Spelling of Group Name'}`, "error");
+                        const errData = await response.json(); item.status = 'failed'; waFailedCount++; printLog(`❌ Failed: ${errData.error || 'Check Spelling of Group Name'}`, "error");
                     }
-                } catch(e) {
-                    item.status = 'failed';
-                    waFailedCount++;
-                    printLog(`❌ Network Error with PC Server.`, "error");
-                }
+                } catch(e) { item.status = 'failed'; waFailedCount++; printLog(`❌ Network Error with PC Server.`, "error"); }
             } else {
                 let phoneStr = String(item.phone);
                 phoneStr = phoneStr.replace(/[^0-9]/g, '');
@@ -1543,79 +1474,42 @@
                 printLog(`Sending to ${item.name}...`, "info");
 
                 if( !phoneStr || phoneStr.length < 10 ) {
-                    item.status = 'failed';
-                    item.retries = 3; 
-                    waFailedCount++;
-                    printLog(`❌ Failed: Invalid Destination ID for ${item.name}`, "error");
+                    item.status = 'failed'; item.retries = 3; waFailedCount++; printLog(`❌ Failed: Invalid Destination ID for ${item.name}`, "error");
                 } else {
                     try {
                         let payload = { to: phoneStr, message: userMsg };
-                        const response = await fetch(WA_API_URL + '/send', {
-                            method: 'POST', headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify(payload)
-                        });
+                        const response = await fetch(WA_API_URL + '/send', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
 
                         if(response.ok) { 
-                            item.status = 'sent';
-                            globalDuplicateSet.add(item.phone); 
-                            waSentCount++;
-                            abSessionCount++; 
-                            microPauseCounter++;
-                            waConsecutiveFails = 0; 
-                            
-                            if (item.retries > 0) waFailedCount--; 
-                            printLog(`✅ Sent to ${item.name}!`, "success"); 
-                            
-                            const lastSentEl = document.getElementById('wa-stat-lastsent');
-                            if(lastSentEl) lastSentEl.innerText = item.name;
-
+                            item.status = 'sent'; globalDuplicateSet.add(item.phone); waSentCount++; abSessionCount++; microPauseCounter++; waConsecutiveFails = 0; 
+                            if (item.retries > 0) waFailedCount--; printLog(`✅ Sent to ${item.name}!`, "success"); 
+                            const lastSentEl = document.getElementById('wa-stat-lastsent'); if(lastSentEl) lastSentEl.innerText = item.name;
                         } else { 
-                            const errData = await response.json();
-                            item.retries = (item.retries || 0) + 1;
+                            const errData = await response.json(); item.retries = (item.retries || 0) + 1;
                             if(item.retries >= 3) {
-                                item.status = 'failed';
-                                waFailedCount++;
-                                printLog(`❌ Failed for ${item.name} permanently: ${errData.error || 'Server Error'}`, "error"); 
-                            } else {
-                                item.status = 'pending'; 
-                                printLog(`⚠️ Will retry ${item.name} later (${item.retries}/3).`, "info");
-                            }
+                                item.status = 'failed'; waFailedCount++; printLog(`❌ Failed for ${item.name} permanently: ${errData.error || 'Server Error'}`, "error"); 
+                            } else { item.status = 'pending'; printLog(`⚠️ Will retry ${item.name} later (${item.retries}/3).`, "info"); }
                         }
                     } catch(e) { 
-                        item.retries = (item.retries || 0) + 1;
-                        waConsecutiveFails++;
-                        printLog(`❌ PC Server Network Error for ${item.name}.`, "error"); 
-                        
+                        item.retries = (item.retries || 0) + 1; waConsecutiveFails++; printLog(`❌ PC Server Network Error for ${item.name}.`, "error"); 
                         if(waConsecutiveFails >= 3) {
                             printLog(`🛑 Multiple network failures detected. Auto-pausing to prevent system/ban issues.`, "error"); 
-                            pauseBroadcast();
-                            saveCampaignState();
-                            updateWAUI();
-                            return;
+                            pauseBroadcast(); saveCampaignState(); updateWAUI(); return;
                         }
                     }
                 }
             }
 
-            saveCampaignState();
-            updateWAUI();
+            saveCampaignState(); updateWAUI();
 
             if(isBroadcastingWA) {
-                if (currentWASubTab === 'group') {
-                    setTimeout(processLocalQueue, 1000);
-                    return;
-                }
-
+                if (currentWASubTab === 'group') { setTimeout(processLocalQueue, 1000); return; }
                 let nextDelay = Math.floor(Math.random() * (8000 - 2000 + 1)) + 2000; 
-                
                 let microPauseLimit = Math.floor(Math.random() * (20 - 10 + 1)) + 10;
                 if (microPauseCounter >= microPauseLimit) {
                     let microSleep = Math.floor(Math.random() * (20000 - 10000 + 1)) + 10000; 
-                    printLog(`☕ AI Load Balancer: Queue micro-break for ${microSleep/1000}s...`, "info");
-                    nextDelay += microSleep;
-                    microPauseCounter = 0; 
+                    printLog(`☕ AI Load Balancer: Queue micro-break for ${microSleep/1000}s...`, "info"); nextDelay += microSleep; microPauseCounter = 0; 
                 }
-
                 setTimeout(processLocalQueue, nextDelay);
             }
         }
@@ -1629,19 +1523,14 @@
             document.getElementById('wa-stat-sent').innerText = waSentCount;
             document.getElementById('wa-stat-failed').innerText = waFailedCount;
             
-            const remainingEl = document.getElementById('wa-stat-remaining');
-            if (remainingEl) remainingEl.innerText = remainingCount;
+            const remainingEl = document.getElementById('wa-stat-remaining'); if (remainingEl) remainingEl.innerText = remainingCount;
             
             const runStatEl = document.getElementById('wa-stat-runstatus');
             if (runStatEl) {
                 if (isBroadcastingWA) {
-                    runStatEl.innerText = "🟢 Running";
-                    runStatEl.style.background = "#d1fae5";
-                    runStatEl.style.color = "#065f46";
+                    runStatEl.innerText = "🟢 Running"; runStatEl.style.background = "#d1fae5"; runStatEl.style.color = "#065f46";
                 } else {
-                    runStatEl.innerText = "⏸️ Paused / Stopped";
-                    runStatEl.style.background = "#fef3c7";
-                    runStatEl.style.color = "#92400e";
+                    runStatEl.innerText = "⏸️ Paused / Stopped"; runStatEl.style.background = "#fef3c7"; runStatEl.style.color = "#92400e";
                 }
             }
             
@@ -1649,86 +1538,52 @@
             document.getElementById('wa-progress-bar').style.width = `${percent}%`;
 
             if(isBroadcastingWA && campaignStartTime && (waSentCount + waFailedCount) > 0) {
-                let msElapsed = Date.now() - campaignStartTime;
-                let itemsDoneThisSession = abSessionCount; 
+                let msElapsed = Date.now() - campaignStartTime; let itemsDoneThisSession = abSessionCount; 
                 
                 if(itemsDoneThisSession > 1) {
-                    let avgMsPerItem = msElapsed / itemsDoneThisSession;
-                    let remainingMs = avgMsPerItem * pendingCount;
-                    
-                    let totalSec = Math.floor(remainingMs / 1000);
-                    let min = Math.floor(totalSec / 60);
-                    let sec = totalSec % 60;
+                    let avgMsPerItem = msElapsed / itemsDoneThisSession; let remainingMs = avgMsPerItem * pendingCount;
+                    let totalSec = Math.floor(remainingMs / 1000); let min = Math.floor(totalSec / 60); let sec = totalSec % 60;
                     document.getElementById('wa-stat-eta').innerText = `ETA: ${min}m ${sec}s`;
                 }
             }
         }
 
         async function logAdminActivity(action, details) {
-            try {
-                await db.collection('admin_logs').add({
-                    admin: 'Batrisi Admin',
-                    action: action,
-                    details: details,
-                    timestamp: Date.now()
-                });
-            } catch(e) { console.error("Logging failed", e); }
+            try { await db.collection('admin_logs').add({ admin: 'Batrisi Admin', action: action, details: details, timestamp: Date.now() }); } catch(e) { console.error("Logging failed", e); }
         }
 
         async function initDashboard() {
-            hideAllContainers();
-            document.getElementById('dashboard-container').style.display = 'block';
-            event.target.classList.add('active');
-            
+            hideAllContainers(); document.getElementById('dashboard-container').style.display = 'block'; event.target.classList.add('active');
             try {
-                const memSnap = await db.collection('members').get();
-                document.getElementById('dash-total-members').innerText = memSnap.size;
-
+                const memSnap = await db.collection('members').get(); document.getElementById('dash-total-members').innerText = memSnap.size;
                 const histSnap = await db.collection('broadcast_history').orderBy('timestamp', 'desc').limit(10).get();
-                let totalSent = 0; let totalFailed = 0;
-                let tableHtml = `<table style="width:100%; border-collapse:collapse;"><thead><tr><th>Date</th><th>Status</th><th>Sent</th></tr></thead><tbody>`;
-                
+                let totalSent = 0; let totalFailed = 0; let tableHtml = `<table style="width:100%; border-collapse:collapse;"><thead><tr><th>Date</th><th>Status</th><th>Sent</th></tr></thead><tbody>`;
                 histSnap.forEach(doc => {
-                    let h = doc.data();
-                    totalSent += (h.sent || 0);
-                    totalFailed += (h.failed || 0);
+                    let h = doc.data(); totalSent += (h.sent || 0); totalFailed += (h.failed || 0);
                     tableHtml += `<tr><td>${new Date(h.timestamp).toLocaleString()}</td><td><span class="badge ${h.status==='Completed'?'success':h.status==='Paused'?'warning':'danger'}">${h.status}</span></td><td>${h.sent}</td></tr>`;
                 });
                 tableHtml += `</tbody></table>`;
-                
-                document.getElementById('dash-total-sent').innerText = totalSent;
-                document.getElementById('dash-total-failed').innerText = totalFailed;
+                document.getElementById('dash-total-sent').innerText = totalSent; document.getElementById('dash-total-failed').innerText = totalFailed;
                 document.getElementById('dash-recent-activity').innerHTML = histSnap.empty ? "No activity found." : tableHtml;
-                
                 document.getElementById('dash-health').innerText = (totalFailed > totalSent && totalSent > 0) ? "Poor" : "100% Excellent";
-                
-            } catch(e) {
-                document.getElementById('dash-recent-activity').innerHTML = "Error loading metrics.";
-            }
+            } catch(e) { document.getElementById('dash-recent-activity').innerHTML = "Error loading metrics."; }
         }
 
         async function initHistory() {
-            hideAllContainers();
-            document.getElementById('history-container').style.display = 'block';
-            event.target.classList.add('active');
-
+            hideAllContainers(); document.getElementById('history-container').style.display = 'block'; event.target.classList.add('active');
             const body = document.getElementById('historyTableBody');
             try {
                 const snap = await db.collection('broadcast_history').orderBy('timestamp', 'desc').limit(50).get();
                 if(snap.empty) { body.innerHTML = `<tr><td colspan="4" style="text-align:center;">No History Available</td></tr>`; return; }
-                
                 let html = '';
                 snap.forEach(doc => {
-                    let h = doc.data();
-                    let dateStr = new Date(h.timestamp).toLocaleString();
+                    let h = doc.data(); let dateStr = new Date(h.timestamp).toLocaleString();
                     let badgeClass = h.status==='Completed' ? 'success' : h.status==='Paused' ? 'warning' : 'danger';
                     html += `<tr>
                         <td><b>${dateStr}</b><br><small style="color:gray;">ID: ${h.campaignId}</small></td>
                         <td><span class="badge ${badgeClass}">${h.status}</span></td>
                         <td>${h.sent} / ${h.total} <br><small style="color:#ef4444;">Failed: ${h.failed}</small></td>
-                        <td>
-                            <button class="btn-outline" style="padding:4px 8px; font-size:12px;" onclick="alert('Template Used:\\n${h.template.substring(0,100)}...')"><i class="fa-solid fa-eye"></i> View Msg</button>
-                        </td>
+                        <td><button class="btn-outline" style="padding:4px 8px; font-size:12px;" onclick="alert('Template Used:\\n${h.template.substring(0,100)}...')"><i class="fa-solid fa-eye"></i> View Msg</button></td>
                     </tr>`;
                 });
                 body.innerHTML = html;
@@ -1737,17 +1592,7 @@
 
         async function saveCampaignHistoryToDB(statusStr) {
             if(!currentCampaignId || waTotalTasks === 0) return;
-            try {
-                await db.collection('broadcast_history').doc(currentCampaignId).set({
-                    campaignId: currentCampaignId,
-                    status: statusStr,
-                    sent: waSentCount,
-                    failed: waFailedCount,
-                    total: waTotalTasks,
-                    template: document.getElementById('wa-message').value,
-                    timestamp: Date.now()
-                });
-            } catch(e) {}
+            try { await db.collection('broadcast_history').doc(currentCampaignId).set({ campaignId: currentCampaignId, status: statusStr, sent: waSentCount, failed: waFailedCount, total: waTotalTasks, template: document.getElementById('wa-message').value, timestamp: Date.now() }); } catch(e) {}
         }
 
         function scheduleBroadcast() {
@@ -1758,25 +1603,15 @@
 
             logAdminActivity("Scheduled Broadcast", `Task scheduled for ${new Date(scheduleMs).toLocaleString()}`);
             
-            const btn = document.getElementById('wa-btn-schedule');
-            btn.innerText = "⏳ Scheduled...";
-            btn.disabled = true;
-            document.getElementById('wa-btn-start').disabled = true;
-
+            const btn = document.getElementById('wa-btn-schedule'); btn.innerText = "⏳ Scheduled..."; btn.disabled = true; document.getElementById('wa-btn-start').disabled = true;
             if(scheduledTimer) clearInterval(scheduledTimer);
             
             scheduledTimer = setInterval(() => {
                 if(Date.now() >= scheduleMs) {
-                    clearInterval(scheduledTimer);
-                    scheduledTimer = null;
-                    btn.innerText = "Schedule Later";
-                    btn.disabled = false;
-                    document.getElementById('wa-btn-start').disabled = false;
-                    printLog(`🕒 Scheduled Trigger Activated! Starting Broadcast...`, "primary");
-                    initiateWABroadcast();
+                    clearInterval(scheduledTimer); scheduledTimer = null; btn.innerText = "Schedule Later"; btn.disabled = false; document.getElementById('wa-btn-start').disabled = false;
+                    printLog(`🕒 Scheduled Trigger Activated! Starting Broadcast...`, "primary"); initiateWABroadcast();
                 }
             }, 5000);
-            
             printLog(`🕒 Campaign Scheduled. Keep window open until ${new Date(scheduleMs).toLocaleString()}`, "info");
         }
 
@@ -1785,10 +1620,7 @@
             try {
                 const snap = await db.collection('wa_templates').get();
                 let opts = '<option value="">Load Saved Template...</option>';
-                snap.forEach(doc => {
-                    opts += `<option value="${doc.id}">${doc.data().name}</option>`;
-                    window[`tpl_${doc.id}`] = doc.data().text;
-                });
+                snap.forEach(doc => { opts += `<option value="${doc.id}">${doc.data().name}</option>`; window[`tpl_${doc.id}`] = doc.data().text; });
                 select.innerHTML = opts;
             } catch(e) {}
         }
@@ -1796,33 +1628,23 @@
         async function saveCurrentAsTemplate() {
             const text = document.getElementById('wa-message').value.trim();
             if(!text) return alert("Write a message first to save it.");
-            let name = prompt("Enter a name for this template:");
-            if(!name) return;
-            
+            let name = prompt("Enter a name for this template:"); if(!name) return;
             try {
                 await db.collection('wa_templates').add({ name: name, text: text, timestamp: Date.now() });
-                showToast("Template Saved!");
-                loadSavedTemplatesOptions();
-                logAdminActivity("Template Saved", `Name: ${name}`);
+                showToast("Template Saved!"); loadSavedTemplatesOptions(); logAdminActivity("Template Saved", `Name: ${name}`);
             } catch(e) { alert("Failed to save template."); }
         }
 
         function loadSavedTemplate() {
             const id = document.getElementById('wa-template-select').value;
-            if(id && window[`tpl_${id}`]) {
-                document.getElementById('wa-message').value = window[`tpl_${id}`];
-            }
+            if(id && window[`tpl_${id}`]) { document.getElementById('wa-message').value = window[`tpl_${id}`]; }
         }
 
         async function loadSmartGroupsOptions() {
             const select = document.getElementById('wa-smart-group-filter');
             try {
-                const snap = await db.collection('wa_smart_groups').get();
-                let opts = '<option value="">★ Load Smart Group...</option>';
-                snap.forEach(doc => {
-                    opts += `<option value="${doc.id}">${doc.data().name}</option>`;
-                    window[`grp_${doc.id}`] = doc.data().phones; 
-                });
+                const snap = await db.collection('wa_smart_groups').get(); let opts = '<option value="">★ Load Smart Group...</option>';
+                snap.forEach(doc => { opts += `<option value="${doc.id}">${doc.data().name}</option>`; window[`grp_${doc.id}`] = doc.data().phones; });
                 select.innerHTML = opts;
             } catch(e) {}
         }
@@ -1830,47 +1652,32 @@
         async function saveSmartGroup() {
             let checked = Array.from(document.querySelectorAll('.wa-checkbox:checked'));
             if(checked.length === 0) return alert("Select members first.");
-            let name = prompt("Name this Custom Group:");
-            if(!name) return;
+            let name = prompt("Name this Custom Group:"); if(!name) return;
             
             let phones = checked.map(cb => cb.dataset.phone);
             try {
                 await db.collection('wa_smart_groups').add({ name: name, phones: phones, timestamp: Date.now() });
-                showToast("Smart Group Saved!");
-                loadSmartGroupsOptions();
-                logAdminActivity("Smart Group Saved", `Name: ${name}, Members: ${phones.length}`);
+                showToast("Smart Group Saved!"); loadSmartGroupsOptions(); logAdminActivity("Smart Group Saved", `Name: ${name}, Members: ${phones.length}`);
             } catch(e) { alert("Failed to save smart group."); }
         }
 
         function loadSmartGroup() {
-            const id = document.getElementById('wa-smart-group-filter').value;
-            if(!id) return;
+            const id = document.getElementById('wa-smart-group-filter').value; if(!id) return;
             let targetPhones = window[`grp_${id}`] || [];
-            
-            let boxes = document.querySelectorAll('.wa-checkbox');
-            boxes.forEach(cb => {
-                cb.checked = targetPhones.includes(cb.dataset.phone);
-            });
+            let boxes = document.querySelectorAll('.wa-checkbox'); boxes.forEach(cb => { cb.checked = targetPhones.includes(cb.dataset.phone); });
             updateWACount();
         }
 
         async function initAdminLogs() {
-            hideAllContainers();
-            document.getElementById('logs-container').style.display = 'block';
-            event.target.classList.add('active');
-            
+            hideAllContainers(); document.getElementById('logs-container').style.display = 'block'; event.target.classList.add('active');
             const body = document.getElementById('adminLogsBody');
             try {
                 const snap = await db.collection('admin_logs').orderBy('timestamp', 'desc').limit(50).get();
                 if(snap.empty) { body.innerHTML = `<div style="padding:20px; text-align:center;">No logs found.</div>`; return; }
-                
                 let html = '';
                 snap.forEach(doc => {
                     let l = doc.data();
-                    html += `<div class="log-item">
-                        <div style="font-weight:bold; color:var(--primary);">${l.action} <span style="float:right; font-size:11px; color:#64748b;">${new Date(l.timestamp).toLocaleString()}</span></div>
-                        <div style="color:var(--dark);">${l.details}</div>
-                    </div>`;
+                    html += `<div class="log-item"><div style="font-weight:bold; color:var(--primary);">${l.action} <span style="float:right; font-size:11px; color:#64748b;">${new Date(l.timestamp).toLocaleString()}</span></div><div style="color:var(--dark);">${l.details}</div></div>`;
                 });
                 body.innerHTML = html;
             } catch(e) { body.innerHTML = `<div style="padding:20px; text-align:center; color:red;">Error loading logs.</div>`; }
@@ -1879,47 +1686,31 @@
         async function clearAdminLogs() {
             if(!confirm("Clear all activity logs?")) return;
             try {
-                const snap = await db.collection('admin_logs').get();
-                let batch = db.batch();
-                snap.forEach(doc => batch.delete(doc.ref));
-                await batch.commit();
-                initAdminLogs();
-                showToast("Logs Cleared");
+                const snap = await db.collection('admin_logs').get(); let batch = db.batch();
+                snap.forEach(doc => batch.delete(doc.ref)); await batch.commit(); initAdminLogs(); showToast("Logs Cleared");
             } catch(e) { alert("Failed to clear"); }
         }
 
-        function openBackupRestore() {
-            document.getElementById('backupModal').style.display = 'flex';
-        }
+        function openBackupRestore() { document.getElementById('backupModal').style.display = 'flex'; }
 
         async function exportDatabaseBackup() {
             const t = document.getElementById('toast'); t.innerText = "Generating Backup..."; t.classList.add('show');
             const collectionsToBackup = ['members', 'events', 'committee', 'wa_templates', 'wa_smart_groups', 'feeship_records'];
             let backupData = {};
-            
             try {
                 for(let col of collectionsToBackup) {
-                    let snap = await db.collection(col).get();
-                    backupData[col] = [];
+                    let snap = await db.collection(col).get(); backupData[col] = [];
                     snap.forEach(doc => backupData[col].push({ id: doc.id, ...doc.data() }));
                 }
-                
                 let dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(backupData));
-                let dlAnchorElem = document.createElement('a');
-                dlAnchorElem.setAttribute("href", dataStr);
-                dlAnchorElem.setAttribute("download", `Batrisi_DB_Backup_${Date.now()}.json`);
-                dlAnchorElem.click();
-                
+                let dlAnchorElem = document.createElement('a'); dlAnchorElem.setAttribute("href", dataStr); dlAnchorElem.setAttribute("download", `Batrisi_DB_Backup_${Date.now()}.json`); dlAnchorElem.click();
                 logAdminActivity("Database Exported", "Full JSON Backup Downloaded.");
                 t.innerText = "Backup Generated!"; setTimeout(()=>t.classList.remove('show'), 3000);
-            } catch(e) {
-                alert("Error generating backup!"); t.classList.remove('show');
-            }
+            } catch(e) { alert("Error generating backup!"); t.classList.remove('show'); }
         }
 
         async function importDatabaseBackup() {
-            const file = document.getElementById('backupFileInput').files[0];
-            if(!file) return alert("Select a JSON file first.");
+            const file = document.getElementById('backupFileInput').files[0]; if(!file) return alert("Select a JSON file first.");
             if(!confirm("WARNING: This will merge the backup into the current database. Proceed?")) return;
             
             const reader = new FileReader();
@@ -1927,15 +1718,13 @@
                 try {
                     let data = JSON.parse(event.target.result);
                     const t = document.getElementById('toast'); t.innerText = "Restoring..."; t.classList.add('show');
-                    
                     let batch = db.batch(); let count = 0;
                     
                     for (let col in data) {
                         for(let item of data[col]) {
                             let ref = db.collection(col).doc(item.id || db.collection(col).doc().id);
                             let pureData = { ...item }; delete pureData.id;
-                            batch.set(ref, pureData, { merge: true });
-                            count++;
+                            batch.set(ref, pureData, { merge: true }); count++;
                             if(count === 490) { await batch.commit(); batch = db.batch(); count = 0; }
                         }
                     }
@@ -1944,39 +1733,24 @@
                     logAdminActivity("Database Restored", "Data merged from JSON backup file.");
                     document.getElementById('backupModal').style.display='none';
                     t.innerText = "Restore Complete!"; setTimeout(()=>t.classList.remove('show'), 3000);
-                    
                 } catch(e) { alert("Invalid Backup File format or Network Error."); }
             };
             reader.readAsText(file);
         }
 
-        /* ----- VISITOR COUNT RESET LOGIC ----- */
         async function resetVisitorCounter() {
             if(!confirm("Are you sure you want to reset the visitor counter to 0?\nThis safely assigns a new key to the tracker without breaking it.")) return;
-            
-            const btn = event.currentTarget;
-            let originalText = btn.innerHTML;
-            btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Resetting...`;
-            btn.disabled = true;
-
+            const btn = event.currentTarget; let originalText = btn.innerHTML;
+            btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Resetting...`; btn.disabled = true;
             try {
-                // Creates a new unique suffix forcing the API to start at 0
-                await db.collection('settings').doc('visitor').set({
-                    resetKey: Date.now()
-                }, { merge: true });
-                
-                logAdminActivity("Visitor Counter Reset", "Website visitor badge was reset to zero.");
-                showToast("Visitor Counter Reset Successfully!");
-            } catch(e) {
-                alert("Failed to reset visitor count. Check connection.");
-            }
-            
-            btn.innerHTML = originalText;
-            btn.disabled = false;
+                await db.collection('settings').doc('visitor').set({ resetKey: Date.now() }, { merge: true });
+                logAdminActivity("Visitor Counter Reset", "Website visitor badge was reset to zero."); showToast("Visitor Counter Reset Successfully!");
+            } catch(e) { alert("Failed to reset visitor count. Check connection."); }
+            btn.innerHTML = originalText; btn.disabled = false;
         }
 
         // ==========================================
-        // FEE-SHIP MODULE LOGIC
+        // FEE-SHIP MODULE LOGIC (PREMIUM VERSION)
         // ==========================================
         
         let feeShipDataObj = {};
@@ -2007,8 +1781,8 @@
                     html += `
                         <tr class="fs-row-item">
                             <td>
-                                <b>Form No: ${d.formNumber || '-'}</b><br>
-                                <small style="color:var(--text-muted);"><i class="fa-solid fa-calendar"></i> ${d.submitDate || '-'}</small>
+                                <span style="background:#e2e8f0; padding:3px 8px; border-radius:20px; font-weight:700; color:var(--dark); font-size:12px;">Form: ${d.formNumber || '-'}</span><br>
+                                <small style="color:var(--text-muted); display:inline-block; margin-top:5px;"><i class="fa-solid fa-calendar-days"></i> ${formatIndianDate(d.submitDate)}</small>
                             </td>
                             <td>
                                 <span style="color:var(--primary); font-weight:600;">${d.memberName || '-'}</span><br>
@@ -2046,7 +1820,7 @@
 
         function openFeeShipModal(id = null) {
             currentFeeShipId = id;
-            document.getElementById('fsModalTitle').innerText = id ? "Edit Fee-Ship Record" : "Add Fee-Ship Record";
+            document.getElementById('fsModalTitle').innerHTML = id ? `<i class="fa-solid fa-graduation-cap" style="color:var(--primary);"></i> Edit Fee-Ship Record` : `<i class="fa-solid fa-graduation-cap" style="color:var(--primary);"></i> Add Fee-Ship Record`;
             document.getElementById('fs_fetch_msg').innerText = "";
             
             const fields = [
@@ -2092,20 +1866,20 @@
             
             if (!memNo) return;
             
-            msgEl.innerText = "Fetching member details...";
-            msgEl.style.color = "#0284c7";
+            msgEl.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Fetching member details...`;
+            msgEl.style.color = "#3b82f6";
             
             try {
                 const snap = await db.collection('members').where('memberNumber', '==', memNo).get();
                 if (snap.empty) {
-                    msgEl.innerText = "Member not found. Check member number or upload CSV database.";
+                    msgEl.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> Member not found. Check member number or upload CSV database.`;
                     msgEl.style.color = "#ef4444";
                     document.getElementById('fs_memberName').value = "";
                     document.getElementById('fs_nativeName').value = "";
                     document.getElementById('fs_mobileNumber').value = "";
                     document.getElementById('fs_address').value = "";
                 } else {
-                    msgEl.innerText = "Member details fetched successfully!";
+                    msgEl.innerHTML = `<i class="fa-solid fa-circle-check"></i> Member details fetched successfully!`;
                     msgEl.style.color = "#10b981";
                     const data = snap.docs[0].data();
                     document.getElementById('fs_memberName').value = data.memberName || "";
@@ -2129,7 +1903,7 @@
             }
             
             const btn = document.getElementById('fsSaveBtn');
-            btn.innerText = "SAVING...";
+            btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> SAVING...`;
             btn.disabled = true;
             
             const dataObj = {
@@ -2167,7 +1941,7 @@
                 alert("Failed to save record.");
             }
             
-            btn.innerText = "SAVE FEE-SHIP";
+            btn.innerHTML = `<i class="fa-solid fa-floppy-disk"></i> SAVE RECORD`;
             btn.disabled = false;
         }
 
@@ -2185,37 +1959,44 @@
             if (!data) return;
             
             const printContent = `
-                <table class="print-table">
-                    <tr><td colspan="2" style="background:#f1f5f9; text-align:center; font-size:16px; font-weight:bold;">MEMBER INFORMATION</td></tr>
+                <div class="print-section-title">MEMBER INFORMATION</div>
+                <table class="print-table" style="margin-top:0;">
                     <tr><th>Member Number</th><td>${data.memberNumber || '-'}</td></tr>
                     <tr><th>Member Name</th><td>${data.memberName || '-'}</td></tr>
                     <tr><th>Native (Village)</th><td>${data.nativeName || '-'}</td></tr>
                     <tr><th>Mobile Number</th><td>${data.mobileNumber || '-'}</td></tr>
                     <tr><th>Address</th><td>${data.address || '-'}</td></tr>
-                    
-                    <tr><td colspan="2" style="background:#f1f5f9; text-align:center; font-size:16px; font-weight:bold; margin-top:20px;">STUDENT & EDUCATION DETAILS</td></tr>
+                </table>
+                
+                <div class="print-section-title">STUDENT & EDUCATION DETAILS</div>
+                <table class="print-table" style="margin-top:0;">
                     <tr><th>Student Name</th><td>${data.studentName || '-'}</td></tr>
                     <tr><th>Relationship with Member</th><td>${data.relationship || '-'}</td></tr>
                     <tr><th>Standard (Std.)</th><td>${data.standard || '-'}</td></tr>
                     <tr><th>Medium</th><td>${data.medium || '-'}</td></tr>
                     <tr><th>Faculty</th><td>${data.faculty || '-'}</td></tr>
-                    
-                    <tr><td colspan="2" style="background:#f1f5f9; text-align:center; font-size:16px; font-weight:bold; margin-top:20px;">BANK ACCOUNT DETAILS</td></tr>
+                </table>
+                
+                <div class="print-section-title">BANK ACCOUNT DETAILS</div>
+                <table class="print-table" style="margin-top:0;">
                     <tr><th>Bank Name</th><td>${data.bankName || '-'}</td></tr>
                     <tr><th>Bank Branch</th><td>${data.bankBranch || '-'}</td></tr>
                     <tr><th>Account Holder Name</th><td>${data.accHolderName || '-'}</td></tr>
                     <tr><th>Account Number</th><td>${data.accNumber || '-'}</td></tr>
                     <tr><th>IFSC Code</th><td>${data.ifscCode || '-'}</td></tr>
-                    
-                    <tr><td colspan="2" style="background:#f1f5f9; text-align:center; font-size:16px; font-weight:bold; margin-top:20px;">FORM SUBMISSION DETAILS</td></tr>
-                    <tr><th>Form Number</th><td>${data.formNumber || '-'}</td></tr>
-                    <tr><th>Submit Date</th><td>${data.submitDate || '-'}</td></tr>
                 </table>
-                <div style="margin-top: 50px; display:flex; justify-content:space-between;">
-                    <div style="text-align:center;">
+                
+                <div class="print-section-title">FORM SUBMISSION DETAILS</div>
+                <table class="print-table" style="margin-top:0;">
+                    <tr><th>Form Number</th><td>${data.formNumber || '-'}</td></tr>
+                    <tr><th>Submit Date</th><td>${formatIndianDate(data.submitDate)}</td></tr>
+                </table>
+                
+                <div class="print-footer">
+                    <div>
                         _______________________<br><br>Member Signature
                     </div>
-                    <div style="text-align:center;">
+                    <div>
                         _______________________<br><br>Authorized Signatory
                     </div>
                 </div>
@@ -2223,6 +2004,52 @@
             
             document.getElementById('printContent').innerHTML = printContent;
             window.print();
+        }
+
+        function exportFeeShipToCSV() {
+            if (!allFeeShipList || allFeeShipList.length === 0) {
+                alert("No Fee-Ship records available to export.");
+                return;
+            }
+
+            let csvContent = "Form Number,Submit Date,Member Number,Member Name,Native (Village),Mobile Number,Address,Student Name,Relationship,Standard,Medium,Faculty,Bank Name,Bank Branch,Account Holder,Account Number,IFSC Code\n";
+
+            allFeeShipList.forEach(data => {
+                let row = [
+                    data.formNumber || '',
+                    formatIndianDate(data.submitDate),
+                    data.memberNumber || '',
+                    data.memberName || '',
+                    data.nativeName || '',
+                    data.mobileNumber || '',
+                    (data.address || '').replace(/"/g, '""'), 
+                    data.studentName || '',
+                    data.relationship || '',
+                    data.standard || '',
+                    data.medium || '',
+                    data.faculty || '',
+                    data.bankName || '',
+                    data.bankBranch || '',
+                    data.accHolderName || '',
+                    data.accNumber || '',
+                    data.ifscCode || ''
+                ];
+                
+                let csvRow = row.map(str => `"${String(str).replace(/\n/g, ' ')}"`).join(",");
+                csvContent += csvRow + "\n";
+            });
+
+            let blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            let link = document.createElement("a");
+            let url = URL.createObjectURL(blob);
+            link.setAttribute("href", url);
+            link.setAttribute("download", `FeeShip_Records_Export_${Date.now()}.csv`);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            logAdminActivity("Exported Fee-Ship", `Exported ${allFeeShipList.length} records to Excel.`);
+            showToast("Exported Successfully!");
         }
 
         async function uploadFeeShipCSV(el) {
