@@ -2031,7 +2031,7 @@
                     data.bankName || '',
                     data.bankBranch || '',
                     data.accHolderName || '',
-                    data.accNumber || '',
+                    `="${String(data.accNumber || '').replace(/"/g, '""')}"`,
                     data.ifscCode || ''
                 ];
                 
